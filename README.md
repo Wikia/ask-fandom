@@ -32,3 +32,7 @@ Your semantic data-based assistant aka _Tell me FANDOM, ..._
 
 * http://espeak.sourceforge.net/
 * https://www.linuxlinks.com/speechtools/
+
+# Inspirations
+
+* [START, the world's first Web-based question answering system](http://start.csail.mit.edu/answer.php?query=What+South-American+country+has+the+largest+population%3F)
