@@ -21,6 +21,8 @@ Your semantic data-based assistant
 * _Who directed the `episode`?_
 * _Who played in `episode`?_
 * _Did `foo` played in `bar` episode?_
-* _Tell me something about `foo`_
-
 * _Was `Jake Simmonds` in the Doctor Who cast_
+
+# Supported "commands"
+* _Tell me something about `foo`_
+* _List me the `Season 2` stories_
