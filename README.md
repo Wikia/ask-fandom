@@ -1,5 +1,17 @@
 # ask-fandom
-Your semantic data-based assistant
+Your semantic data-based assistant aka _Tell me FANDOM, ..._
+
+# Supported questions
+
+* _When was `someone` born?_
+* _Who directed the `episode`?_
+* _Who played in `episode`?_
+* _Did `foo` played in `bar` episode?_
+* _Was `Jake Simmonds` in the Doctor Who cast_
+
+# Supported "commands"
+* _Tell me something about `foo`_
+* _List me the `Season 2` stories_
 
 # Data sources
 
@@ -15,18 +27,7 @@ Your semantic data-based assistant
 * http://www.nltk.org/_modules/nltk/parse/bllip.html
 * https://pypi.org/project/bllipparser/
 
-## Text to speech
+## Text to speech and speech to text
 
 * http://espeak.sourceforge.net/
-
-# Supported questions
-
-* _When was `someone` born?_
-* _Who directed the `episode`?_
-* _Who played in `episode`?_
-* _Did `foo` played in `bar` episode?_
-* _Was `Jake Simmonds` in the Doctor Who cast_
-
-# Supported "commands"
-* _Tell me something about `foo`_
-* _List me the `Season 2` stories_
+* https://www.linuxlinks.com/speechtools/
