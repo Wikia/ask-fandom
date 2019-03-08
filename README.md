@@ -40,6 +40,10 @@ https://wowwiki.fandom.com/wiki/Special:Browse/250-20Fish
 https://wowwiki.fandom.com/wiki/Property:Faction
 * _What's the durability for "Flying" Worgen Robes?_ 
 https://wowwiki.fandom.com/wiki/Special:Browse/%22Flying%22-20Worgen-20Robes
+* _Which faction does the Alterac belong to?_
+https://wowwiki.fandom.com/wiki/Special:Browse/Alterac
+* _List all articles with modification date 6 November 2018_
+https://wowwiki.fandom.com/wiki/Special:SearchByProperty/Modification-20date/23:38:07,-206-20November-202018
 
 # Supported "commands"
 * _Tell me something about `foo`_
