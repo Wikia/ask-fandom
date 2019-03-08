@@ -3,7 +3,7 @@ Utilities used to pick the correct source of data for a given question
 """
 import logging
 
-from ask_fandom.parser import parse_question, filter_parsed_question
+from ask_fandom.parser import NLPParser, filter_parsed_question
 from .oracles import EpisodeFactOracle, PersonFactOracle, WoWGroupsMemberOracle
 
 
@@ -17,7 +17,7 @@ def get_oracle(question: str):
     logger = logging.getLogger('get_oracle')
     logger.info('Parsing question: %s', question)
 
-    parsed = parse_question(question)
+    parsed = NLPParser.parse_question(question)
     filtered = list(filter_parsed_question(parsed))
 
     logger.info('Parsed question: %s', filtered)

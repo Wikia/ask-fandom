@@ -1,8 +1,8 @@
 """
 Base class for asking SemanticMediaWiki wikis
 """
-from .base import AskFandomOracle
 from mwclient import Site
+from .base import AskFandomOracle
 
 
 class SemanticFandomOracle(AskFandomOracle):

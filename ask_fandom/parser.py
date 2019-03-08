@@ -3,18 +3,27 @@ Parser a question in natural language into a syntax tree
 """
 from bllipparser import RerankingParser
 
-# https://pypi.org/project/bllipparser/
-PARSER = RerankingParser.fetch_and_load('WSJ-PTB3', verbose=True)
 
-
-def parse_question(question: str):
+class NLPParser:
     """
-    Parses given question into NLP tree
-
-    :type question str
-    :rtype: bllipparser.RerankingParser.Tree
+    Natural language questions parses using bllipparser model
     """
-    return PARSER.parse(question)[0].ptb_parse
+    # pylint: disable=too-few-public-methods
+    instance = None
+
+    @classmethod
+    def parse_question(cls, question: str):
+        """
+        Parses given question into NLP tree
+
+        :type question str
+        :rtype: bllipparser.RerankingParser.Tree
+        """
+        if cls.instance is None:
+            # https://pypi.org/project/bllipparser/
+            cls.instance = RerankingParser.fetch_and_load('WSJ-PTB3', verbose=True)
+
+        return cls.instance.parse(question)[0].ptb_parse
 
 
 def filter_parsed_question(tree):

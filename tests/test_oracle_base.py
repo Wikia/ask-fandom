@@ -1,7 +1,7 @@
 """
 Test cases for ask_fandom.oracle module
 """
-from ask_fandom.parser import filter_parsed_question, parse_question
+from ask_fandom.parser import filter_parsed_question, NLPParser
 
 
 def test_filter_parsed_question():
@@ -19,27 +19,27 @@ def test_filter_parsed_question():
     (VBN born) Tree 0
     (. ?) Tree 0
     """
-    assert list(filter_parsed_question(parse_question("Who played Jake Simmonds?"))) == [
+    assert list(filter_parsed_question(NLPParser.parse_question("Who played Jake Simmonds?"))) == [
         ('WP', 'Who'),
         ('VBD', 'played'),
         ('NP', 'Jake Simmonds'),
     ]
 
-    assert list(filter_parsed_question(parse_question("When was Jake Simmonds born?"))) == [
+    assert list(filter_parsed_question(NLPParser.parse_question("When was Jake Simmonds born?"))) == [
         ('WRB', 'When'),
         ('VBD', 'was'),
         ('NP', 'Jake Simmonds'),
         ('VBN', 'born'),
     ]
 
-    assert list(filter_parsed_question(parse_question("Who directed The Big Bang episode?"))) == [
+    assert list(filter_parsed_question(NLPParser.parse_question("Who directed The Big Bang episode?"))) == [
         ('WP', 'Who'),
         ('VBD', 'directed'),
         ('NP', 'The Big Bang episode'),
         ('NN', 'episode'),
     ]
 
-    assert list(filter_parsed_question(parse_question("Who played in The End of Time episode?"))) == [
+    assert list(filter_parsed_question(NLPParser.parse_question("Who played in The End of Time episode?"))) == [
         ('WP', 'Who'),
         ('VBD', 'played'),
         ('IN', 'in'),
@@ -51,7 +51,7 @@ def test_filter_parsed_question():
         ('NN', 'episode'),
     ]
 
-    assert list(filter_parsed_question(parse_question("Which faction does the Alterac belong to?"))) == [
+    assert list(filter_parsed_question(NLPParser.parse_question("Which faction does the Alterac belong to?"))) == [
         ('WDT', 'Which'),
         ('NN', 'faction'),
         ('VBZ', 'does'),
