@@ -7,7 +7,15 @@ Your semantic data-based assistant aka _Tell me FANDOM, ..._
 * _Who directed the `episode`?_
 * _Who played in `episode`?_
 * _Did `foo` played in `bar` episode?_
-* _Was `Jake Simmonds` in the Doctor Who cast?_
+
+# Examples
+
+* _Which is the first episode with Jana Carpenter?_
+* _Which species is Jana Carpenter?_
+* _Who is the main actor in 456 ambassador?_
+* _Was Jake Simmonds in the Doctor Who cast?_
+* _Was 456 ambassador engaged in drug dealing?_
+* _List me the Doctor Who guest actors_
 
 # Supported "commands"
 * _Tell me something about `foo`_
