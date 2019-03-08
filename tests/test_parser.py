@@ -59,3 +59,38 @@ def test_filter_parsed_question():
         ('VB', 'belong'),
         ('TO', 'to'),
     ]
+
+    assert list(filter_parsed_question(NLPParser.parse_question("When was Manchester United founded?"))) == [
+        ('WRB', 'When'),
+        ('VBD', 'was'),
+        ('NP', 'Manchester United'),
+        ('VBN', 'founded'),
+    ]
+
+    assert list(filter_parsed_question(NLPParser.parse_question("Who is the coach of Manchester United?"))) == [
+        ('WP', 'Who'),
+        ('VBZ', 'is'),
+        ('NP', 'the coach of Manchester United'),
+        ('NP', 'the coach'),
+        ('NN', 'coach'),
+        ('IN', 'of'),
+        ('NP', 'Manchester United'),
+    ]
+
+    assert list(filter_parsed_question(NLPParser.parse_question("Who plays as forward for Manchester United?"))) == [
+        ('WP', 'Who'),
+        ('VBZ', 'plays'),
+        ('RB', 'as'),
+        ('RB', 'forward'),
+        ('IN', 'for'),
+        ('NP', 'Manchester United')
+    ]
+
+    assert list(filter_parsed_question(NLPParser.parse_question("Who plays as midfielder for Manchester United?"))) == [
+        ('WP', 'Who'),
+        ('VBZ', 'plays'),
+        ('RB', 'as'),
+        ('JJ', 'midfielder'),
+        ('IN', 'for'),
+        ('NP', 'Manchester United')
+    ]
