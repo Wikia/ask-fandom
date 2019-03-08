@@ -57,6 +57,27 @@ class AskFandomIntentBase:
         """
         raise NotImplementedError()
 
+    @classmethod
+    def intents(cls):
+        """
+        Get the list of all registered intents
+
+        :rtype: list[AskFandomIntentBase]
+        """
+        ret = []
+
+        for intent in cls.__subclasses__():
+            # more subclasses?
+            if intent.__subclasses__():
+                ret += [
+                    sub_intent
+                    for sub_intent in intent.__subclasses__()
+                ]
+            else:
+                ret.append(intent)
+
+        return ret
+
     @staticmethod
     def get_mw_client(wiki_domain: str):
         """
