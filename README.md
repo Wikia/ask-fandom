@@ -13,6 +13,13 @@ Your semantic data-based assistant aka _Tell me FANDOM, ..._
 * _Tell me something about `foo`_
 * _List me the `Season 2` stories_
 
+```
+>>> rrp.simple_parse("Was Jake Simmonds in the Doctor Who cast?")
+'(S1 (SQ (VBD Was) (NP (NP (NNP Jake) (NNPS Simmonds)) (PP (IN in) (NP (DT the) (NN Doctor)))) (NP (WP Who) (NN cast)) (. ?)))'
+>>> rrp.simple_parse("Tell me something about foo")
+'(S1 (S (VP (VB Tell) (NP (PRP me)) (NP (NP (NN something)) (PP (IN about) (NP (NN foo)))))))'
+```
+
 # Data sources
 
 ## SemanticMediaWiki API
