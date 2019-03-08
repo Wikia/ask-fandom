@@ -3,7 +3,7 @@ from ask_fandom.oracle.oracles import PersonFactOracle, EpisodeFactOracle
 
 
 def test_get_oracle():
-    # # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
+    # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
     assert get_oracle(question='Who played Jake Simmonds?') == \
         [PersonFactOracle, {'name': 'Jake Simmonds', 'property': 'played'}]
 
