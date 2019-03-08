@@ -1,3 +1,6 @@
+from pytest import raises
+
+from ask_fandom.errors import QuestionNotUnderstoodError
 from ask_fandom.oracle.oracles import PersonFactOracle, EpisodeFactOracle, WoWGroupsMemberOracle
 from ask_fandom.oracle.selector import get_oracle
 
@@ -20,3 +23,8 @@ def test_get_oracle():
     # https://wowwiki.fandom.com/wiki/Special:Browse/Alterac
     assert get_oracle(question='Which faction does the Alterac belong to?') == \
         [WoWGroupsMemberOracle, {'name': 'the Alterac', 'group': 'faction'}]
+
+
+def test_get_oracle_not_understood():
+    with raises(QuestionNotUnderstoodError):
+        get_oracle(question='Is foo a bar?')

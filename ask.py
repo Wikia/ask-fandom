@@ -1,5 +1,7 @@
 """
-Handles parsing of questions
+Main entry point
+
+Ask a question and get an answer in your command line
 """
 import logging
 from sys import argv
@@ -13,9 +15,6 @@ def ask_fandom(question: str):
     :rtype: str
     """
     oracle_spec = get_oracle(question)
-
-    if oracle_spec is None:
-        raise NotImplemented('I did not understand your question :(')
 
     (oracle_class, oracle_args) = oracle_spec
     oracle = oracle_class(question, **oracle_args)

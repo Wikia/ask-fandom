@@ -5,7 +5,7 @@ import logging
 
 from mwclient import Site
 
-from .errors import AnswerNotKnownError
+from ask_fandom.errors import AnswerNotKnownError
 
 
 class AskFandomOracle:

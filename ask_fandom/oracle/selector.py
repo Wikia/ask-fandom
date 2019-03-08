@@ -3,6 +3,7 @@ Utilities used to pick the correct source of data for a given question
 """
 import logging
 
+from ask_fandom.errors import QuestionNotUnderstoodError
 from ask_fandom.parser import NLPParser, filter_parsed_question
 from .oracles import EpisodeFactOracle, PersonFactOracle, WoWGroupsMemberOracle
 
@@ -12,7 +13,8 @@ def get_oracle(question: str):
     Selects an appropriate oracle class based on the question
 
     :type question str
-    :rtype: (AskFandomOracle, dict)|None
+    :rtype: AskFandomOracle
+    :raises: QuestionNotUnderstoodError
     """
     logger = logging.getLogger('get_oracle')
     logger.info('Parsing question: %s', question)
@@ -33,7 +35,7 @@ def get_oracle(question: str):
         elif len(words[_type]) < len(item):
             words[_type] = item
 
-    print(words, filtered)
+    # print(words, filtered)
 
     # Who played Jake Simmonds?
     # {'WP': 'Who', 'VBD': 'played', 'NP': 'Jake Simmonds'}
@@ -76,4 +78,4 @@ def get_oracle(question: str):
             {'name': words.get('NP'), 'group': words.get('NN')}
         ]
 
-    return None
+    raise QuestionNotUnderstoodError(question)
