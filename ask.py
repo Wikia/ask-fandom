@@ -2,6 +2,8 @@
 Handles parsing of questions
 """
 import logging
+from sys import argv
+
 from ask_fandom.oracle import get_oracle
 
 
@@ -25,6 +27,10 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
     # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
-    answer = ask_fandom("Who played Jake Simmonds?")
+    question = "Who played Jake Simmonds?" if len(argv) < 2 else argv[1]
 
+    answer = ask_fandom(question)
+
+    print('---')
+    print(question)
     print(answer)
