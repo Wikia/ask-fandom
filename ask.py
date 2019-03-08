@@ -27,10 +27,10 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
     # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
-    question = "Who played Jake Simmonds?" if len(argv) < 2 else argv[1]
+    user_question = "Who played Jake Simmonds?" if len(argv) < 2 else argv[1]
 
-    answer = ask_fandom(question)
+    answer = ask_fandom(user_question)
 
     print('---')
-    print(question)
+    print(user_question)
     print(answer)
