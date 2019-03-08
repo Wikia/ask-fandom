@@ -26,14 +26,14 @@ def test_filter_parsed_question():
         ('VBN', 'born'),
     ]
 
-    assert list(filter_parsed_question(parse_question("Who directed The Big Bang episode"))) == [
+    assert list(filter_parsed_question(parse_question("Who directed The Big Bang episode?"))) == [
         ('WP', 'Who'),
         ('VBD', 'directed'),
         ('NP', 'The Big Bang episode'),
         ('NN', 'episode'),
     ]
 
-    assert list(filter_parsed_question(parse_question("Who played in The End of Time episode"))) == [
+    assert list(filter_parsed_question(parse_question("Who played in The End of Time episode?"))) == [
         ('WP', 'Who'),
         ('VBD', 'played'),
         ('IN', 'in'),

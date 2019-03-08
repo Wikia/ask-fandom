@@ -4,6 +4,9 @@ Utilities used to pick the correct source of data for a given question
 import logging
 from bllipparser import RerankingParser
 
+from .oracles import EpisodeFactOracle, PersonFactOracle
+
+
 # https://pypi.org/project/bllipparser/
 PARSER = RerankingParser.fetch_and_load('WSJ-PTB3', verbose=True)
 
@@ -41,8 +44,6 @@ def filter_parsed_question(tree):
 
         item_len = len(item)
 
-        print(item)
-
         # (WP Who)
         # (WRB When)
         # (VBD was)
@@ -62,10 +63,6 @@ def filter_parsed_question(tree):
                 for sub_item in item.all_subtrees()
             ]
 
-            print()
-            print('NP', items)
-            print()
-
             # take only NNP(S) items - words of NP
             item_value = [
                 item[1]
@@ -77,18 +74,54 @@ def filter_parsed_question(tree):
 
 def get_oracle(question: str):
     """
-    Selects an appriopriate oracle class based on the question
+    Selects an appropriate oracle class based on the question
 
     :type question str
-    :rtype: list
+    :rtype: (str, dict)|None
     """
     logger = logging.getLogger('get_oracle')
     logger.info('Parsing question: %s', question)
 
     parsed = parse_question(question)
-    for item in parsed.all_subtrees():
-        print(item, item.__class__.__name__, len(item))
+    filtered = list(filter_parsed_question(parsed))
 
-    logger.info('Parsed question: %s', parsed.pretty_string())
+    logger.info('Parsed question: %s', filtered)
 
-    return []
+    # pick the longer token of a given type
+    # ('NP', 'The End of Time episode')
+    # ('NP', 'The End')
+    words = dict()
+
+    for _type, item in filtered:
+        if _type not in words:
+            words[_type] = item
+        elif len(words[_type]) < len(item):
+            words[_type] = item
+
+    print(words, filtered)
+
+    # When was Jake Simmonds born?
+    # {'NP': 'Jake Simmonds', 'WRB': 'When', 'VBN': 'born', 'VBD': 'was'}
+    if words.get('WRB') == 'When' and words.get('VBD') == 'was':
+        return [
+            PersonFactOracle.__name__,
+            {'name': words.get('NP'), 'property': words.get('VBN')}
+        ]
+
+    # Who directed The Big Bang episode?
+    # {'WP': 'Who', 'VBD': 'directed', 'NP': 'The Big Bang episode', 'NN': 'episode'}
+    if words.get('WP') == 'Who' and words.get('NN') == 'episode':
+        return [
+            EpisodeFactOracle.__name__,
+            {'name': words.get('NP'), 'property': words.get('VBD')}
+        ]
+
+    # Who played in The End of Time episode?
+    # {'WP': 'Who', 'VBD': 'played', 'IN': 'of', 'NP': 'Time episode', 'NN': 'episode'}
+    if words.get('WP') == 'Who' and words.get('NN') == 'episode':
+        return [
+            EpisodeFactOracle.__name__,
+            {'name': words.get('NP'), 'property': words.get('VBD')}
+        ]
+
+    return None
