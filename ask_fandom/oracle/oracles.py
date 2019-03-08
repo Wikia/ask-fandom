@@ -9,13 +9,27 @@ class PersonFactOracle(SemanticFandomOracle):
     """
     Provides data from a character / actor page
     """
-    def answer(self):
-        pass
+    ANSWER_PHRASE = '{name} is played by {answer}.'
+
+    @property
+    def _answer(self):
+        # {'name': 'Jake Simmonds', 'property': 'played'}
+        # map a word from question to SMW property name
+        if self.args['property'] == 'played':
+            prop = 'Actor'
+        else:
+            return None
+
+        site = self.get_mw_client('tardis.fandom.com')
+        values = self.get_smw_property_for_page(site, self.args['name'], prop)
+
+        return values[0] if values else None
 
 
 class EpisodeFactOracle(SemanticFandomOracle):
     """
     Provides data from an episode page
     """
-    def answer(self):
-        pass
+    @property
+    def _answer(self):
+        return None
