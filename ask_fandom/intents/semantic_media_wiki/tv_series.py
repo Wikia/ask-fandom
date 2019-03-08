@@ -20,8 +20,7 @@ class PersonFactIntent(SemanticFandomIntent):
         else:
             return None
 
-        site = self.get_mw_client('tardis.fandom.com')
-        values = self.get_smw_property_for_page(site, self.args['name'], prop)
+        values = self.get_smw_property_for_page('tardis.fandom.com', self.args['name'], prop)
 
         return values[0] if values else None
 
@@ -49,7 +48,6 @@ class EpisodeFactIntent(SemanticFandomIntent):
         if name.endswith(' episode'):
             name = name[:-8]
 
-        site = self.get_mw_client('tardis.fandom.com')
-        values = self.get_smw_property_for_page(site, name, prop)
+        values = self.get_smw_property_for_page('tardis.fandom.com', name, prop)
 
         return values[0] if values else None

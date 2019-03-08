@@ -20,7 +20,6 @@ class WoWGroupsMemberIntent(SemanticFandomIntent):
         if name.lower().startswith('the '):
             self.args['name'] = name = name[4:]
 
-        site = self.get_mw_client('wowwiki.fandom.com')
-        values = self.get_smw_property_for_page(site, name, self.args['group'])
+        values = self.get_smw_property_for_page('wowwiki.fandom.com', name, self.args['group'])
 
         return values[0] if values else None
