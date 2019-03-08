@@ -56,6 +56,22 @@ https://wowwiki.fandom.com/wiki/Special:SearchByProperty/Modification-20date/23:
 '(S1 (S (VP (VB Tell) (NP (PRP me)) (NP (NP (NN something)) (PP (IN about) (NP (NN foo)))))))'
 ```
 
+# Command-line tool
+
+```
+$ python ask.py  "Who played Lionel Carson?"
+Model directory: /home/macbre/.local/share/bllipparser/WSJ-PTB3
+Model directory already exists, not reinstalling
+INFO:get_oracle:Parsing question: Who played Lionel Carson?
+INFO:get_oracle:Parsed question: [('WP', 'Who'), ('VBD', 'played'), ('NP', 'Lionel Carson')]
+INFO:PersonFactOracle:You've asked: 'Who played Lionel Carson?' ({'name': 'Lionel Carson', 'property': 'played'})
+INFO:PersonFactOracle:Asking SMW for 'Lionel Carson' page Actor property
+INFO:PersonFactOracle:Got the value for Actor: ['Peter Bowles']
+---
+Who played Lionel Carson?
+Lionel Carson is played by Peter Bowles.
+```
+
 # Data sources
 
 ## SemanticMediaWiki API
