@@ -8,7 +8,7 @@ Your semantic data-based assistant aka _Tell me FANDOM, ..._
 * _Who played in `episode`?_
 * _Did `foo` played in `bar` episode?_
 
-# Examples
+# Examples for https://tardis.fandom.com/wiki/Doctor_Who_Wiki
 
 * _Which is the first episode with Jana Carpenter?_
 * _Which species is Jana Carpenter?_
@@ -25,6 +25,21 @@ Your semantic data-based assistant aka _Tell me FANDOM, ..._
 * _In which episode Abzorbaloff first appeared?_
 * _List me all episodes in 6th season_
 * _Who starred as a second doctor?_
+* _List all articles needing citation_
+* _Who starred in Bad Wolf?_
+
+# Examples for https://wowwiki.fandom.com
+
+* _How many achievement points are achievable from "Classy" Guild Achievements?_
+https://wowwiki.fandom.com/wiki/Special:Browse/%22Classy%22-20Guild-20Achievements
+* _List me all proffesion achievements_
+https://wowwiki.fandom.com/wiki/Category:Professions_achievements
+* _How many achievements points I can get from 250 Fish?_
+https://wowwiki.fandom.com/wiki/Special:Browse/250-20Fish
+* _List me all Factions_
+https://wowwiki.fandom.com/wiki/Property:Faction
+* _What's the durability for "Flying" Worgen Robes?_ 
+https://wowwiki.fandom.com/wiki/Special:Browse/%22Flying%22-20Worgen-20Robes
 
 # Supported "commands"
 * _Tell me something about `foo`_
