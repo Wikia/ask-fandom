@@ -50,3 +50,12 @@ def test_filter_parsed_question():
         ('NP', 'Time episode'),
         ('NN', 'episode'),
     ]
+
+    assert list(filter_parsed_question(parse_question("Which faction does the Alterac belong to?"))) == [
+        ('WDT', 'Which'),
+        ('NN', 'faction'),
+        ('VBZ', 'does'),
+        ('NP', 'the Alterac'),
+        ('VB', 'belong'),
+        ('TO', 'to'),
+    ]

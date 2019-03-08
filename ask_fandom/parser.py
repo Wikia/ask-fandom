@@ -35,6 +35,8 @@ def filter_parsed_question(tree):
         return _item.split(' ', 1)
 
     for item in tree.all_subtrees():
+        # print(item)
+
         # (WHADVP (WRB When)) -> WHADVP
         (item_type, item_value) = get_item_type_and_value(item)
 
@@ -46,7 +48,12 @@ def filter_parsed_question(tree):
         # (VBN born)
         # (IN in)
         # (NN episode)
-        if item_len == 0 and item_type in ['WP', 'WRB', 'VBD', 'VBN', 'IN', 'NN']:
+        # (WDT Which)
+        # (VB belong)
+        # (TO to)
+        # (VBZ does)
+        if item_len == 0 and \
+                item_type in ['WP', 'WRB', 'VBD', 'VBN', 'IN', 'NN', 'WDT', 'VB', 'TO', 'VBZ']:
             yield item_type, item_value
 
         # (NP (NNP Jake) (NNP Simmonds))

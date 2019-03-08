@@ -85,7 +85,7 @@ class SemanticFandomOracle(AskFandomOracle):
 
         for item in query_data:
             # we've found the property we're looking for
-            if item['property'] == prop:
+            if item['property'].lower() == prop.lower():
                 values = [
                     # 'Andrew_Hayden-Smith#0#'
                     str(value['item']).replace('#0#', '').replace('_', ' ')
