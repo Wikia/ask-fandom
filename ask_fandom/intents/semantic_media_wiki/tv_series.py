@@ -10,6 +10,33 @@ class PersonFactIntent(SemanticFandomIntent):
     """
     ANSWER_PHRASE = '{name} is played by {answer}.'
 
+    @staticmethod
+    def is_question_supported(words: dict):
+        """
+        Who played Jake Simmonds?
+
+        :rtype: bool
+        """
+        # Who played Jake Simmonds?
+        # {'WP': 'Who', 'VBD': 'played', 'NP': 'Jake Simmonds'}
+        if words.get('WP') == 'Who' and words.get('VBD') == 'played' and 'IN' not in words:
+            return True
+
+        # When was Jake Simmonds born?
+        # {'NP': 'Jake Simmonds', 'WRB': 'When', 'VBN': 'born', 'VBD': 'was'}
+        if words.get('WRB') == 'When' and words.get('VBD') == 'was':
+            return True
+
+        return False
+
+    @classmethod
+    def get_words_mapping(cls):
+        """
+        Maps intent arguments into word types from the question
+        :rtype: dict
+        """
+        return {'name': 'NP', 'property': ('VBN', 'VBD')}
+
     def _fetch_answer(self):
         # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
         # {'name': 'Jake Simmonds', 'property': 'played'}
@@ -29,6 +56,27 @@ class EpisodeFactIntent(SemanticFandomIntent):
     Provides data from an episode page
     """
     ANSWER_PHRASE = '"{name}" episode has been {property} by {answer}.'
+
+    @staticmethod
+    def is_question_supported(words: dict):
+        """
+        Who directed The Big Bang episode?
+
+        :rtype: bool
+        """
+        # {'WP': 'Who', 'VBD': 'directed', 'NP': 'The Big Bang episode', 'NN': 'episode'}
+        if words.get('WP') == 'Who' and words.get('NN') == 'episode':
+            return True
+
+        return False
+
+    @classmethod
+    def get_words_mapping(cls):
+        """
+        Maps intent arguments into word types from the question
+        :rtype: dict
+        """
+        return {'name': 'NP', 'property': 'VBD'}
 
     def _fetch_answer(self):
         # https://tardis.fandom.com/wiki/Special:Browse/The_Big_Bang

@@ -8,12 +8,7 @@ class SemanticFandomIntent(AskFandomIntentBase):
     """
     A base class for oracles that queries SemanticMediaWiki data
     """
-    @property
-    def _fetch_answer(self):
-        """
-        :rtype: str
-        """
-        raise NotImplementedError()
+    # pylint: disable=abstract-method
 
     def get_smw_property_for_page(self, wiki_domain: str, page: str, prop: str):
         """

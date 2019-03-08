@@ -6,7 +6,6 @@ Ask a question and get an answer in your command line
 import logging
 from sys import argv
 
-from ask_fandom.intents.base import AskFandomIntentBase
 from ask_fandom.intents.selector import get_intent
 
 
@@ -15,11 +14,7 @@ def ask_fandom(question: str):
     :type question str
     :rtype: ask_fandom.intents.base.Answer
     """
-    logging.info('Available intents: %s', AskFandomIntentBase.intents())
-
     (intent_class, intent_args) = get_intent(question)
-    logging.info('Using %s intent (%s)', intent_class, intent_args)
-
     intent = intent_class(question, **intent_args)
 
     return intent.get_answer()

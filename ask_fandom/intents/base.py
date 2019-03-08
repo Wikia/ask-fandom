@@ -57,6 +57,21 @@ class AskFandomIntentBase:
         """
         raise NotImplementedError()
 
+    @staticmethod
+    def is_question_supported(words: dict):
+        """
+        :rtype: bool
+        """
+        raise NotImplementedError()
+
+    @classmethod
+    def get_words_mapping(cls):
+        """
+        Maps intent arguments into word types from the question
+        :rtype: dict
+        """
+        raise NotImplementedError()
+
     @classmethod
     def intents(cls):
         """
