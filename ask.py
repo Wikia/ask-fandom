@@ -14,9 +14,9 @@ def ask_fandom(question: str):
     :type question str
     :rtype: str
     """
-    oracle_spec = get_intent(question)
+    (oracle_class, oracle_args) = get_intent(question)
+    logging.info('Using %s intent (%s)', oracle_class, oracle_args)
 
-    (oracle_class, oracle_args) = oracle_spec
     oracle = oracle_class(question, **oracle_args)
 
     return oracle.answer()
