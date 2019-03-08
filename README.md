@@ -99,11 +99,6 @@ Lionel Carson is played by Peter Bowles.
 * http://www.nltk.org/_modules/nltk/parse/bllip.html
 * https://pypi.org/project/bllipparser/
 
-## Text to speech and speech to text
-
-* http://espeak.sourceforge.net/
-* https://www.linuxlinks.com/speechtools/
-
 # Inspirations
 
 * [START, the world's first Web-based question answering system](http://start.csail.mit.edu/answer.php?query=What+South-American+country+has+the+largest+population%3F)
