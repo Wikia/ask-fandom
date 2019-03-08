@@ -12,7 +12,7 @@ def get_oracle(question: str):
     Selects an appropriate oracle class based on the question
 
     :type question str
-    :rtype: (str, dict)|None
+    :rtype: (AskFandomOracle, dict)|None
     """
     logger = logging.getLogger('get_oracle')
     logger.info('Parsing question: %s', question)
@@ -33,13 +33,21 @@ def get_oracle(question: str):
         elif len(words[_type]) < len(item):
             words[_type] = item
 
-    print(words, filtered)
+    # print(words, filtered)
+
+    # Who played Jake Simmonds?
+    # {'WP': 'Who', 'VBD': 'played', 'NP': 'Jake Simmonds'}
+    if words.get('WP') == 'Who' and words.get('VBD') == 'played' and 'IN' not in words:
+        return [
+            PersonFactOracle,
+            {'name': words.get('NP'), 'property': words.get('VBD')}
+        ]
 
     # When was Jake Simmonds born?
     # {'NP': 'Jake Simmonds', 'WRB': 'When', 'VBN': 'born', 'VBD': 'was'}
     if words.get('WRB') == 'When' and words.get('VBD') == 'was':
         return [
-            PersonFactOracle.__name__,
+            PersonFactOracle,
             {'name': words.get('NP'), 'property': words.get('VBN')}
         ]
 
@@ -47,7 +55,7 @@ def get_oracle(question: str):
     # {'WP': 'Who', 'VBD': 'directed', 'NP': 'The Big Bang episode', 'NN': 'episode'}
     if words.get('WP') == 'Who' and words.get('NN') == 'episode':
         return [
-            EpisodeFactOracle.__name__,
+            EpisodeFactOracle,
             {'name': words.get('NP'), 'property': words.get('VBD')}
         ]
 
@@ -55,7 +63,7 @@ def get_oracle(question: str):
     # {'WP': 'Who', 'VBD': 'played', 'IN': 'of', 'NP': 'Time episode', 'NN': 'episode'}
     if words.get('WP') == 'Who' and words.get('NN') == 'episode':
         return [
-            EpisodeFactOracle.__name__,
+            EpisodeFactOracle,
             {'name': words.get('NP'), 'property': words.get('VBD')}
         ]
 

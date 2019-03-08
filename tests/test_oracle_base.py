@@ -19,6 +19,12 @@ def test_filter_parsed_question():
     (VBN born) Tree 0
     (. ?) Tree 0
     """
+    assert list(filter_parsed_question(parse_question("Who played Jake Simmonds?"))) == [
+        ('WP', 'Who'),
+        ('VBD', 'played'),
+        ('NP', 'Jake Simmonds'),
+    ]
+
     assert list(filter_parsed_question(parse_question("When was Jake Simmonds born?"))) == [
         ('WRB', 'When'),
         ('VBD', 'was'),
