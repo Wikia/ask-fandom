@@ -6,4 +6,4 @@ Intent encapsulates handling of a specific question type.
 # Intents concept: https://developer.amazon.com/docs/custom-skills/episode-intents.html
 
 # allow intents to be discovered
-from .intents import EpisodeFactIntent, PersonFactIntent, WoWGroupsMemberIntent
+from .semantic_media_wiki import EpisodeFactIntent, PersonFactIntent, WoWGroupsMemberIntent

@@ -2,7 +2,7 @@
 Base class for asking SemanticMediaWiki wikis
 """
 from mwclient import Site
-from .base import AskFandomIntentBase
+from ask_fandom.intents.base import AskFandomIntentBase
 
 
 class SemanticFandomIntent(AskFandomIntentBase):
