@@ -5,6 +5,8 @@ import logging
 
 from mwclient import Site
 
+from .errors import AnswerNotKnownError
+
 
 class AskFandomOracle:
     """
@@ -30,17 +32,22 @@ class AskFandomOracle:
         """
         Returns fully formatted answer
 
-        :rtype: str|None
+        :rtype: Answer
+        :raise: AnswerNotKnownError
         """
         answer = self._answer
 
         if answer is None:
-            return None
+            raise AnswerNotKnownError(self.question)
 
         params = {"answer": answer}
         params.update(self.args)
 
-        return self.ANSWER_PHRASE.format(**params)
+        return Answer(
+            question=self.question,
+            answer=self.ANSWER_PHRASE.format(**params),
+            meta=self.args
+        )
 
     @property
     def _answer(self):
@@ -56,3 +63,25 @@ class AskFandomOracle:
         :rtype: Site
         """
         return Site(host=('http', wiki_domain), path='/')
+
+
+class Answer:
+    """
+    A simple wrapper for an answer.
+    Keeps its string representation, metadata and references.
+    """
+    # pylint: disable=too-few-public-methods
+    def __init__(self, question: str, answer: str, meta: dict = None, reference: str = None):
+        """
+        Constructor
+        """
+        self.question = question
+        self.answer = answer
+        self.meta = meta
+        self.reference = reference
+
+    def __str__(self):
+        """
+        :rtype: str
+        """
+        return self.answer
