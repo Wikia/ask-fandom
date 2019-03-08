@@ -1,5 +1,5 @@
 from ask_fandom.oracle.base import get_oracle
-from ask_fandom.oracle.oracles import PersonFactOracle, EpisodeFactOracle
+from ask_fandom.oracle.oracles import PersonFactOracle, EpisodeFactOracle, WoWGroupsMemberOracle
 
 
 def test_get_oracle():
@@ -16,3 +16,7 @@ def test_get_oracle():
 
     assert get_oracle(question='Who played in The End of Time episode?') == \
         [EpisodeFactOracle, {'name': 'The End of Time episode', 'property': 'played'}]
+
+    # https://wowwiki.fandom.com/wiki/Special:Browse/Alterac
+    assert get_oracle(question='Which faction does the Alterac belong to?') == \
+        [WoWGroupsMemberOracle, {'name': 'the Alterac', 'group': 'faction'}]

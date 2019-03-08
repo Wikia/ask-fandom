@@ -4,7 +4,7 @@ Utilities used to pick the correct source of data for a given question
 import logging
 
 from ask_fandom.parser import parse_question, filter_parsed_question
-from .oracles import EpisodeFactOracle, PersonFactOracle
+from .oracles import EpisodeFactOracle, PersonFactOracle, WoWGroupsMemberOracle
 
 
 def get_oracle(question: str):
@@ -33,7 +33,7 @@ def get_oracle(question: str):
         elif len(words[_type]) < len(item):
             words[_type] = item
 
-    # print(words, filtered)
+    print(words, filtered)
 
     # Who played Jake Simmonds?
     # {'WP': 'Who', 'VBD': 'played', 'NP': 'Jake Simmonds'}
@@ -65,6 +65,15 @@ def get_oracle(question: str):
         return [
             EpisodeFactOracle,
             {'name': words.get('NP'), 'property': words.get('VBD')}
+        ]
+
+    # Which faction does the Alterac belong to?
+    # {'WDT': 'Which', 'NN': 'faction', 'VBZ': 'does',
+    # 'NP': 'the Alterac', 'VB': 'belong', 'TO': 'to'}
+    if words.get('WDT') == 'Which' and words.get('VB') == 'belong' and words.get('TO', 'to'):
+        return [
+            WoWGroupsMemberOracle,
+            {'name': words.get('NP'), 'group': words.get('NN')}
         ]
 
     return None
