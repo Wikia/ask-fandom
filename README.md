@@ -16,6 +16,15 @@ Your semantic data-based assistant aka _Tell me FANDOM, ..._
 * _Was Jake Simmonds in the Doctor Who cast?_
 * _Was 456 ambassador engaged in drug dealing?_
 * _List me the Doctor Who guest actors_
+* _Who had me first apperance in The End of the World (TV story)?_
+* _Who starred as Vincent van Gogh?_
+* _What's species is De Maggio?_
+* _Who starred as Adam's mum?_
+* _Which character was portrayed by Terence Brown?_
+* _List all characters that belong to Gond species_
+* _In which episode Abzorbaloff first appeared?_
+* _List me all episodes in 6th season_
+* _Who starred as a second doctor?_
 
 # Supported "commands"
 * _Tell me something about `foo`_
