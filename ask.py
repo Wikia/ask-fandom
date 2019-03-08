@@ -14,12 +14,12 @@ def ask_fandom(question: str):
     :type question str
     :rtype: ask_fandom.intents.base.Answer
     """
-    (oracle_class, oracle_args) = get_intent(question)
-    logging.info('Using %s intent (%s)', oracle_class, oracle_args)
+    (intent_class, intent_args) = get_intent(question)
+    logging.info('Using %s intent (%s)', intent_class, intent_args)
 
-    oracle = oracle_class(question, **oracle_args)
+    intent = intent_class(question, **intent_args)
 
-    return oracle.get_answer()
+    return intent.get_answer()
 
 
 if __name__ == "__main__":
