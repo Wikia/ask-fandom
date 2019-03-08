@@ -8,7 +8,7 @@ from mwclient import Site
 from ask_fandom.errors import AnswerNotKnownError
 
 
-class AskFandomOracle:
+class AskFandomIntentBase:
     """
     An abstract class for getting data from our wikis
     """

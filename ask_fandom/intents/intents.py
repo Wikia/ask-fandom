@@ -1,11 +1,11 @@
 """
-Data providers
+Specific intents
 """
 # pylint: disable=too-few-public-methods
-from ask_fandom.oracle.smw import SemanticFandomOracle
+from ask_fandom.intents.smw import SemanticFandomIntent
 
 
-class PersonFactOracle(SemanticFandomOracle):
+class PersonFactIntent(SemanticFandomIntent):
     """
     Provides data from a character / actor page
     """
@@ -27,7 +27,7 @@ class PersonFactOracle(SemanticFandomOracle):
         return values[0] if values else None
 
 
-class EpisodeFactOracle(SemanticFandomOracle):
+class EpisodeFactIntent(SemanticFandomIntent):
     """
     Provides data from an episode page
     """
@@ -56,7 +56,7 @@ class EpisodeFactOracle(SemanticFandomOracle):
         return values[0] if values else None
 
 
-class WoWGroupsMemberOracle(SemanticFandomOracle):
+class WoWGroupsMemberIntent(SemanticFandomIntent):
     """
     Provides World Of Warcraft nations membership data
     """

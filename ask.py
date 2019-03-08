@@ -6,7 +6,7 @@ Ask a question and get an answer in your command line
 import logging
 from sys import argv
 
-from ask_fandom.oracle.selector import get_oracle
+from ask_fandom.intents.selector import get_intent
 
 
 def ask_fandom(question: str):
@@ -14,7 +14,7 @@ def ask_fandom(question: str):
     :type question str
     :rtype: str
     """
-    oracle_spec = get_oracle(question)
+    oracle_spec = get_intent(question)
 
     (oracle_class, oracle_args) = oracle_spec
     oracle = oracle_class(question, **oracle_args)

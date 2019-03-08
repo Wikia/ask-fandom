@@ -2,10 +2,10 @@
 Base class for asking SemanticMediaWiki wikis
 """
 from mwclient import Site
-from .base import AskFandomOracle
+from .base import AskFandomIntentBase
 
 
-class SemanticFandomOracle(AskFandomOracle):
+class SemanticFandomIntent(AskFandomIntentBase):
     """
     A base class for oracles that queries SemanticMediaWiki data
     """
