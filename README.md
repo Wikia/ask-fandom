@@ -44,6 +44,16 @@ https://wowwiki.fandom.com/wiki/Special:Browse/%22Flying%22-20Worgen-20Robes
 https://wowwiki.fandom.com/wiki/Special:Browse/Alterac
 * _List all articles with modification date 6 November 2018_
 https://wowwiki.fandom.com/wiki/Special:SearchByProperty/Modification-20date/23:38:07,-206-20November-202018
+* _What is the population of Grizzly Hills?_
+https://wowwiki.fandom.com/wiki/Special:Browse/Grizzly-20Hills
+* _What is the level range for Grizzly Hills?_
+https://wowwiki.fandom.com/wiki/Special:Browse/Grizzly-20Hills
+* _What is the Quest:A Hunter's Challenge quest id?_
+https://wowwiki.fandom.com/wiki/Special:Browse/Quest:A-20Hunter%27s-20Challenge
+* _List item slots list in a Quest:A Hunter's Challenge_
+https://wowwiki.fandom.com/wiki/Special:Browse/Quest:A-20Hunter%27s-20Challenge
+* _Which faction does Wyrmskull Village belogns to?_
+https://wowwiki.fandom.com/wiki/Special:Browse/Wyrmskull-20Village
 
 # Supported "commands"
 * _Tell me something about `foo`_
