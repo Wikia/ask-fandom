@@ -9,7 +9,7 @@ class SemanticFandomIntent(AskFandomIntentBase):
     A base class for oracles that queries SemanticMediaWiki data
     """
     @property
-    def _answer(self):
+    def _fetch_answer(self):
         """
         :rtype: str
         """

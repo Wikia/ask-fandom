@@ -10,8 +10,7 @@ class PersonFactIntent(SemanticFandomIntent):
     """
     ANSWER_PHRASE = '{name} is played by {answer}.'
 
-    @property
-    def _answer(self):
+    def _fetch_answer(self):
         # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
         # {'name': 'Jake Simmonds', 'property': 'played'}
         # map a word from question to SMW property name
@@ -31,8 +30,7 @@ class EpisodeFactIntent(SemanticFandomIntent):
     """
     ANSWER_PHRASE = '"{name}" episode has been {property} by {answer}.'
 
-    @property
-    def _answer(self):
+    def _fetch_answer(self):
         # https://tardis.fandom.com/wiki/Special:Browse/The_Big_Bang
         # {'name': 'The Big Bang episode', 'property': 'directed'}
         if self.args['property'] == 'directed':

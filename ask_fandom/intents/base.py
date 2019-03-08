@@ -36,7 +36,7 @@ class AskFandomIntentBase:
         :rtype: Answer
         :raise: AnswerNotKnownError
         """
-        answer = self._answer
+        answer = self._fetch_answer()
 
         if answer is None:
             raise AnswerNotKnownError(self.question)
@@ -51,8 +51,7 @@ class AskFandomIntentBase:
             meta=meta
         )
 
-    @property
-    def _answer(self):
+    def _fetch_answer(self):
         """
         :rtype: str
         """

@@ -10,8 +10,7 @@ class WoWGroupsMemberIntent(SemanticFandomIntent):
     """
     ANSWER_PHRASE = '{name} is a member of "{answer}" {group}.'
 
-    @property
-    def _answer(self):
+    def _fetch_answer(self):
         # https://wowwiki.fandom.com/wiki/Special:Browse/Alterac
         # ({'name': 'the Alterac', 'group': 'faction'}
         name = str(self.args['name'])
