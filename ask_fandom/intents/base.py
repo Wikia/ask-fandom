@@ -5,6 +5,7 @@ import logging
 
 from mwclient import Site
 
+from ask_fandom.answer import Answer
 from ask_fandom.errors import AnswerNotKnownError
 
 
@@ -28,7 +29,7 @@ class AskFandomIntentBase:
     def __repr__(self):
         return '<{}> {}'.format(self.__class__.__name__, self.question)
 
-    def answer(self):
+    def get_answer(self):
         """
         Returns fully formatted answer
 
@@ -40,13 +41,14 @@ class AskFandomIntentBase:
         if answer is None:
             raise AnswerNotKnownError(self.question)
 
-        params = {"answer": answer}
-        params.update(self.args)
+        meta = {"answer": answer}
+        meta.update(self.args)
 
         return Answer(
             question=self.question,
-            answer=self.ANSWER_PHRASE.format(**params),
-            meta=self.args
+            answer=self.ANSWER_PHRASE.format(**meta),
+            intent=self.__class__,
+            meta=meta
         )
 
     @property
@@ -63,25 +65,3 @@ class AskFandomIntentBase:
         :rtype: Site
         """
         return Site(host=('http', wiki_domain), path='/')
-
-
-class Answer:
-    """
-    A simple wrapper for an answer.
-    Keeps its string representation, metadata and references.
-    """
-    # pylint: disable=too-few-public-methods
-    def __init__(self, question: str, answer: str, meta: dict = None, reference: str = None):
-        """
-        Constructor
-        """
-        self.question = question
-        self.answer = answer
-        self.meta = meta
-        self.reference = reference
-
-    def __str__(self):
-        """
-        :rtype: str
-        """
-        return self.answer
