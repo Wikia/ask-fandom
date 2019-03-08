@@ -1,79 +1,58 @@
 """
-Utilities used to pick the correct source of data for a given question
+Base class for asking Fandom
 """
 import logging
 
-from ask_fandom.parser import parse_question, filter_parsed_question
-from .oracles import EpisodeFactOracle, PersonFactOracle, WoWGroupsMemberOracle
+from mwclient import Site
 
 
-def get_oracle(question: str):
+class AskFandomOracle:
     """
-    Selects an appropriate oracle class based on the question
-
-    :type question str
-    :rtype: (AskFandomOracle, dict)|None
+    An abstract class for getting data from our wikis
     """
-    logger = logging.getLogger('get_oracle')
-    logger.info('Parsing question: %s', question)
+    ANSWER_PHRASE = ''
 
-    parsed = parse_question(question)
-    filtered = list(filter_parsed_question(parsed))
+    def __init__(self, question: str, **kwargs):
+        """
+        :type question str
+        :type kwargs dict
+        """
+        self.logger = logging.getLogger(self.__class__.__name__)
+        self.question = question
+        self.args = kwargs
 
-    logger.info('Parsed question: %s', filtered)
+        self.logger.info("You've asked: '%s' (%s)", self.question, self.args)
 
-    # pick the longer token of a given type
-    # ('NP', 'The End of Time episode')
-    # ('NP', 'The End')
-    words = dict()
+    def __repr__(self):
+        return '<{}> {}'.format(self.__class__.__name__, self.question)
 
-    for _type, item in filtered:
-        if _type not in words:
-            words[_type] = item
-        elif len(words[_type]) < len(item):
-            words[_type] = item
+    def answer(self):
+        """
+        Returns fully formatted answer
 
-    print(words, filtered)
+        :rtype: str|None
+        """
+        answer = self._answer
 
-    # Who played Jake Simmonds?
-    # {'WP': 'Who', 'VBD': 'played', 'NP': 'Jake Simmonds'}
-    if words.get('WP') == 'Who' and words.get('VBD') == 'played' and 'IN' not in words:
-        return [
-            PersonFactOracle,
-            {'name': words.get('NP'), 'property': words.get('VBD')}
-        ]
+        if answer is None:
+            return None
 
-    # When was Jake Simmonds born?
-    # {'NP': 'Jake Simmonds', 'WRB': 'When', 'VBN': 'born', 'VBD': 'was'}
-    if words.get('WRB') == 'When' and words.get('VBD') == 'was':
-        return [
-            PersonFactOracle,
-            {'name': words.get('NP'), 'property': words.get('VBN')}
-        ]
+        params = {"answer": answer}
+        params.update(self.args)
 
-    # Who directed The Big Bang episode?
-    # {'WP': 'Who', 'VBD': 'directed', 'NP': 'The Big Bang episode', 'NN': 'episode'}
-    if words.get('WP') == 'Who' and words.get('NN') == 'episode':
-        return [
-            EpisodeFactOracle,
-            {'name': words.get('NP'), 'property': words.get('VBD')}
-        ]
+        return self.ANSWER_PHRASE.format(**params)
 
-    # Who played in The End of Time episode?
-    # {'WP': 'Who', 'VBD': 'played', 'IN': 'of', 'NP': 'Time episode', 'NN': 'episode'}
-    if words.get('WP') == 'Who' and words.get('NN') == 'episode':
-        return [
-            EpisodeFactOracle,
-            {'name': words.get('NP'), 'property': words.get('VBD')}
-        ]
+    @property
+    def _answer(self):
+        """
+        :rtype: str
+        """
+        raise NotImplementedError()
 
-    # Which faction does the Alterac belong to?
-    # {'WDT': 'Which', 'NN': 'faction', 'VBZ': 'does',
-    # 'NP': 'the Alterac', 'VB': 'belong', 'TO': 'to'}
-    if words.get('WDT') == 'Which' and words.get('VB') == 'belong' and words.get('TO', 'to'):
-        return [
-            WoWGroupsMemberOracle,
-            {'name': words.get('NP'), 'group': words.get('NN')}
-        ]
-
-    return None
+    @staticmethod
+    def get_mw_client(wiki_domain: str):
+        """
+        :type wiki_domain str
+        :rtype: Site
+        """
+        return Site(host=('http', wiki_domain), path='/')

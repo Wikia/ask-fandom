@@ -1,7 +1,7 @@
 """
 Test cases for ask_fandom.oracle module
 """
-from ask_fandom.oracle.base import filter_parsed_question, parse_question
+from ask_fandom.parser import filter_parsed_question, parse_question
 
 
 def test_filter_parsed_question():

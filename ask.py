@@ -4,7 +4,7 @@ Handles parsing of questions
 import logging
 from sys import argv
 
-from ask_fandom.oracle import get_oracle
+from ask_fandom.oracle.selector import get_oracle
 
 
 def ask_fandom(question: str):

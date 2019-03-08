@@ -1,5 +1,5 @@
-from ask_fandom.oracle.base import get_oracle
 from ask_fandom.oracle.oracles import PersonFactOracle, EpisodeFactOracle, WoWGroupsMemberOracle
+from ask_fandom.oracle.selector import get_oracle
 
 
 def test_get_oracle():
