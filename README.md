@@ -1,4 +1,6 @@
 # ask-fandom
+[![Build Status](https://travis-ci.com/Wikia/ask-fandom.svg?branch=master)](https://travis-ci.com/Wikia/ask-fandom)
+
 Your semantic data-based assistant aka _Tell me FANDOM, ..._
 
 # Supported questions
