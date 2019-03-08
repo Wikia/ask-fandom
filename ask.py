@@ -1,26 +1,23 @@
 """
-Handles parsing of questions
+Main entry point
+
+Ask a question and get an answer in your command line
 """
 import logging
 from sys import argv
 
-from ask_fandom.oracle.selector import get_oracle
+from ask_fandom.intents.selector import get_intent
 
 
 def ask_fandom(question: str):
     """
     :type question str
-    :rtype: str
+    :rtype: ask_fandom.intents.base.Answer
     """
-    oracle_spec = get_oracle(question)
+    (intent_class, intent_args) = get_intent(question)
+    intent = intent_class(question, **intent_args)
 
-    if oracle_spec is None:
-        raise NotImplemented('I did not understand your question :(')
-
-    (oracle_class, oracle_args) = oracle_spec
-    oracle = oracle_class(question, **oracle_args)
-
-    return oracle.answer()
+    return intent.get_answer()
 
 
 if __name__ == "__main__":
@@ -30,6 +27,8 @@ if __name__ == "__main__":
     user_question = "Who played Jake Simmonds?" if len(argv) < 2 else argv[1]
 
     answer = ask_fandom(user_question)
+    logging.info('%s -> %s (%s: %s)',
+                 answer.question, answer.answer, answer.intent.__name__, answer.meta)
 
     print('---')
     print(user_question)

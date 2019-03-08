@@ -1,6 +1,7 @@
 """
 Parser a question in natural language into a syntax tree
 """
+import logging
 from bllipparser import RerankingParser
 
 
@@ -20,8 +21,13 @@ class NLPParser:
         :rtype: bllipparser.RerankingParser.Tree
         """
         if cls.instance is None:
+            logger = logging.getLogger(cls.__name__)
+            logger.info('Loading a parsing model for NLP...')
+
             # https://pypi.org/project/bllipparser/
-            cls.instance = RerankingParser.fetch_and_load('WSJ-PTB3', verbose=True)
+            cls.instance = RerankingParser.fetch_and_load('WSJ-PTB3', verbose=False)
+
+            logger.info('Model loaded')
 
         return cls.instance.parse(question)[0].ptb_parse
 

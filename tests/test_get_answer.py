@@ -1,7 +1,7 @@
 from pytest import raises
 
 from ask import ask_fandom
-from ask_fandom.oracle.errors import AnswerNotKnownError
+from ask_fandom.errors import AnswerNotKnownError
 
 
 def test_ask_fandom():
