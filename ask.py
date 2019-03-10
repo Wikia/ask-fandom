@@ -4,6 +4,7 @@ Main entry point
 Ask a question and get an answer in your command line
 """
 import logging
+from os import getenv
 from sys import argv
 
 from ask_fandom.intents.selector import get_intent
@@ -21,7 +22,8 @@ def ask_fandom(question: str):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
+    # Run with DEBUG=1 env variable to have more verbose logging
+    logging.basicConfig(level=logging.DEBUG if getenv('DEBUG') == '1' else logging.INFO)
 
     # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
     user_question = "Who played Jake Simmonds?" if len(argv) < 2 else argv[1]
