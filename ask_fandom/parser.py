@@ -67,8 +67,13 @@ def filter_parsed_question(tree):
         # (VB belong)
         # (TO to)
         # (VBZ does)
+        # (RB as)
+        # (RB forward)
+        # (JJ midfielder)
+        # (VBG playing)
         if item_len == 0 and \
-                item_type in ['WP', 'WRB', 'VBD', 'VBN', 'IN', 'NN', 'WDT', 'VB', 'TO', 'VBZ']:
+                item_type in ['WP', 'WRB', 'VBD', 'VBN', 'IN', 'NN',
+                              'WDT', 'VB', 'TO', 'VBZ', 'RB', 'JJ', 'VBG']:
             yield item_type, item_value
 
         # (NP (NNP Jake) (NNP Simmonds))

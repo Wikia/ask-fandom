@@ -4,6 +4,7 @@ Base class for asking Fandom
 import logging
 
 from mwclient import Site
+from requests import Session
 
 from ask_fandom.answer import Answer
 from ask_fandom.errors import AnswerNotKnownError
@@ -99,4 +100,7 @@ class AskFandomIntentBase:
         :type wiki_domain str
         :rtype: Site
         """
-        return Site(host=('http', wiki_domain), path='/')
+        session = Session()
+        session.headers['User-Agent'] = 'ask-fandom (+https://github.com/Wikia/ask-fandom)'
+
+        return Site(host=('https', wiki_domain), path='/', pool=session)
