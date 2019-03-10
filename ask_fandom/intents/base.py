@@ -94,6 +94,35 @@ class AskFandomIntentBase:
 
         return ret
 
+    @classmethod
+    def get_documentation(cls):
+        """
+        Returns Markdown formatted documentation for this intent
+
+        :rtype: str
+        """
+        question_doc = str(cls.is_question_supported.__doc__.strip())
+
+        # print(cls, question_doc)
+
+        questions = "\n".join([
+            '* _{}_'.format(line.lstrip())
+            for line in question_doc.split("\n")
+            if not line.lstrip().startswith(':') and not line.lstrip() == ''
+        ])
+
+        return """
+## `{name}`
+> {description}
+
+{questions}
+
+        """.strip().format(
+            name=cls.__name__,
+            description=cls.__doc__.strip(),
+            questions=questions
+        )
+
     @staticmethod
     def get_mw_client(wiki_domain: str):
         """
