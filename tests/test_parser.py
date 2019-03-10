@@ -60,6 +60,8 @@ def test_filter_parsed_question():
         ('TO', 'to'),
     ]
 
+
+def test_filter_parsed_question_football():
     assert list(filter_parsed_question(NLPParser.parse_question("When was Manchester United founded?"))) == [
         ('WRB', 'When'),
         ('VBD', 'was'),
@@ -93,4 +95,28 @@ def test_filter_parsed_question():
         ('JJ', 'midfielder'),
         ('IN', 'for'),
         ('NP', 'Manchester United')
+    ]
+
+    # different phrases of the same question
+    assert list(filter_parsed_question(NLPParser.parse_question("Which club Cristiano Ronaldo plays for?"))) == [
+        ('WDT', 'Which'),
+        ('NN', 'club'),
+        ('NP', 'Cristiano Ronaldo'),
+        ('VBZ', 'plays'),
+        ('IN', 'for'),
+    ]
+
+    assert list(filter_parsed_question(NLPParser.parse_question("Where is Cristiano Ronaldo playing now?"))) == [
+        ('WRB', 'Where'),
+        ('VBZ', 'is'),
+        ('NP', 'Cristiano Ronaldo'),
+        ('VBG', 'playing'),
+        ('RB', 'now'),
+    ]
+
+    assert list(filter_parsed_question(NLPParser.parse_question("Where does Cristiano Ronaldo play?"))) == [
+        ('WRB', 'Where'),
+        ('VBZ', 'does'),
+        ('NP', 'Cristiano Ronaldo'),
+        ('VB', 'play'),
     ]
