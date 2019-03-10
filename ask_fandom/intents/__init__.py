@@ -7,3 +7,4 @@ Intent encapsulates handling of a specific question type.
 
 # allow intents to be discovered
 from .semantic_media_wiki import EpisodeFactIntent, PersonFactIntent, WoWGroupsMemberIntent
+from .wiki import FootballPlayerFactIntent

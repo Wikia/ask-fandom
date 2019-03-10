@@ -21,6 +21,22 @@ def test_ask_fandom():
         'Alterac is a member of "Hereditary monarchy" government.'
 
 
+def test_football():
+    assert str(ask_fandom('Which club Romelu Lukaku plays for?')) == \
+        'Romelu Lukaku plays for Manchester United F.C. now.'
+
+
+def test_football_same_question():
+    assert str(ask_fandom('Which club Cristiano Ronaldo plays for?')) == \
+        'Cristiano Ronaldo plays for Juventus F.C. now.'
+
+    assert str(ask_fandom('Where is Cristiano Ronaldo playing now?')) == \
+        'Cristiano Ronaldo plays for Juventus F.C. now.'
+
+    assert str(ask_fandom('Where does Cristiano Ronaldo play?')) == \
+        'Cristiano Ronaldo plays for Juventus F.C. now.'
+
+
 def test_ask_fandom_dont_know():
     with raises(AnswerNotKnownError):
         ask_fandom('Who played Unknown Character?')

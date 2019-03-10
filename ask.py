@@ -26,7 +26,12 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG if getenv('DEBUG') == '1' else logging.INFO)
 
     # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
-    user_question = "Who played Jake Simmonds?" if len(argv) < 2 else argv[1]
+    # default_question = 'Who played Jake Simmonds?'
+
+    # https://football.fandom.com/wiki/Cristiano_Ronaldo
+    default_question = 'Which club Cristiano Ronaldo plays for?'
+
+    user_question = default_question if len(argv) < 2 else argv[1]
 
     answer = ask_fandom(user_question)
     logging.info('%s -> %s (%s: %s)',

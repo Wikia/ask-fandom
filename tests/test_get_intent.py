@@ -1,7 +1,10 @@
 from pytest import raises
 
 from ask_fandom.errors import QuestionNotUnderstoodError
-from ask_fandom.intents import PersonFactIntent, EpisodeFactIntent, WoWGroupsMemberIntent
+from ask_fandom.intents import \
+    PersonFactIntent, EpisodeFactIntent, \
+    WoWGroupsMemberIntent, \
+    FootballPlayerFactIntent
 from ask_fandom.intents.selector import get_intent
 
 
@@ -23,6 +26,17 @@ def test_get_oracle():
     # https://wowwiki.fandom.com/wiki/Special:Browse/Alterac
     assert get_intent(question='Which faction does the Alterac belong to?') == \
            [WoWGroupsMemberIntent, {'name': 'the Alterac', 'group': 'faction'}]
+
+
+def test_get_intent_football():
+    assert get_intent(question='Where does Cristiano Ronaldo play?') == \
+           [FootballPlayerFactIntent, {'name': 'Cristiano Ronaldo', 'property': 'play'}]
+
+    assert get_intent(question='Where is Cristiano Ronaldo playing now?') == \
+           [FootballPlayerFactIntent, {'name': 'Cristiano Ronaldo', 'property': 'playing'}]
+
+    assert get_intent(question='Which club Cristiano Ronaldo plays for?') == \
+           [FootballPlayerFactIntent, {'name': 'Cristiano Ronaldo', 'property': 'plays'}]
 
 
 def test_get_oracle_not_understood():
