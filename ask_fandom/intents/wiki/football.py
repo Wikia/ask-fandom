@@ -3,6 +3,9 @@ Intent handling football players and clubs
 
 Which club Cristiano Ronaldo plays for?
 Cristiano Ronaldo plays for Juventus F.C. now.
+---
+Where does Lionel Messi play?
+Lionel Messi plays for FC Barcelona now.
 """
 from .base import WikiTemplatesIntent, extract_link
 
@@ -16,7 +19,8 @@ class FootballPlayerFactIntent(WikiTemplatesIntent):
     @staticmethod
     def is_question_supported(words: dict):
         """
-        Where does Cristiano Ronaldo play?
+        Which club Cristiano Ronaldo plays for?
+        Where does Lionel Messi play?
 
         :rtype: bool
         """

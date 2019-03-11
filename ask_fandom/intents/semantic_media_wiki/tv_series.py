@@ -6,7 +6,7 @@ from .base import SemanticFandomIntent
 
 class PersonFactIntent(SemanticFandomIntent):
     """
-    Provides data from a character / actor page
+    Provides data from "Doctor Who" character / actor page
     """
     ANSWER_PHRASE = '{name} is played by {answer}.'
 
@@ -53,7 +53,7 @@ class PersonFactIntent(SemanticFandomIntent):
 
 class EpisodeFactIntent(SemanticFandomIntent):
     """
-    Provides data from an episode page
+    Provides data from "Doctor Who" episode page
     """
     ANSWER_PHRASE = '"{name}" episode has been {property} by {answer}.'
 
