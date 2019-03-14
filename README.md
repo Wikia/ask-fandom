@@ -101,8 +101,14 @@ Lionel Carson is played by Peter Bowles.
 
 # Inspirations
 
-* [START, the world's first Web-based question answering system](http://start.csail.mit.edu/answer.php?query=What+South-American+country+has+the+largest+population%3F) / [whitepapers](https://groups.csail.mit.edu/infolab/publications.html)
+* [START, the world's first Web-based question answering system](http://start.csail.mit.edu/answer.php?query=What+South-American+country+has+the+largest+population%3F)
 * [Amazon's Alexa](https://developer.amazon.com/docs/custom-skills/built-in-intent-library.html#intent-signature-syntax) / [intents concept](https://developer.amazon.com/docs/custom-skills/episode-intents.html)
+
+# Whitepapers
+
+> See https://groups.csail.mit.edu/infolab/publications.html
+
+* [MIT's START and Omnibase described](https://groups.csail.mit.edu/infolab/publications/Katz-etal-NLDB02.pdf)
 
 # Install
 
