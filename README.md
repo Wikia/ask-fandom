@@ -109,6 +109,7 @@ Lionel Carson is played by Peter Bowles.
 > See https://groups.csail.mit.edu/infolab/publications.html
 
 * [MIT's START and Omnibase described](https://groups.csail.mit.edu/infolab/publications/Katz-etal-NLDB02.pdf)
+* [Indexing and Retrieving Natural Language Using Ternary Expressions](https://cs.uwaterloo.ca/~jimmylin/publications/Lin_MEng_thesis_2001.pdf)
 
 # Install
 
