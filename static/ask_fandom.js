@@ -48,11 +48,15 @@ $(function() {
     });
 
     // pre-fill the question box
+    function ask(question) {
+        $('#question').val(question);
+        form.submit();
+    }
+
     function onHashChange() {
         var hash_question = decodeURIComponent(document.location.hash).replace(/^#/, '').replace(/_/g, ' ');
 
-        $('#question').val(hash_question);
-        form.submit();
+        ask(hash_question);
     }
 
     if (document.location.hash) {
@@ -65,7 +69,34 @@ $(function() {
     $('#examples a').on('click', function(ev) {
         ev.preventDefault();
 
-        $('#question').val($(this).text());
-        $('#ask').hide().fadeIn();
+        ask($(this).text());
+    });
+
+    /**
+     * Speech recognition
+     *
+     * https://davidwalsh.name/speech-recognition
+     */
+    $('#say').on('click', function(ev) {
+        ev.preventDefault();
+
+        var button =$(this);
+        button.css('opacity', '1');
+
+        var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 5;
+        recognition.start();
+
+        console.log('Please tell us your question');
+
+        recognition.onresult = function(event) {
+            var text = event.results[0][0].transcript;
+            console.log('You said: ', text);
+            button.css('opacity', '.5');
+
+            ask(text);
+        };
     });
 });
