@@ -48,10 +48,16 @@ $(function() {
     });
 
     // pre-fill the question box
-    if (document.location.hash) {
+    function onHashChange() {
         var hash_question = decodeURIComponent(document.location.hash).replace(/^#/, '').replace(/_/g, ' ');
 
         $('#question').val(hash_question);
         form.submit();
     }
+
+    if (document.location.hash) {
+        onHashChange();
+    }
+
+    // $(window).bind( 'hashchange', onHashChange);
 });
