@@ -86,12 +86,12 @@ Lionel Carson is played by Peter Bowles.
 
 # Web interface / HTTP API
 
-Run `make server` to start it. Flask server will listen on `0.0.0.0:5000`.
+Run `make server` to start it. Flask server will listen on `0.0.0.0:5050`.
 
 ## `/ask`
 
 ```
-$ curl -s 'http://127.0.0.1:5000/ask?q=Who%20directed%20The%20Big%20Bang%20episode?' | jq
+$ curl -s 'http://127.0.0.1:5050/ask?q=Who%20directed%20The%20Big%20Bang%20episode?' | jq
 {
   "_intent": "EpisodeFactIntent",
   "_meta": {
