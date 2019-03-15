@@ -17,10 +17,10 @@ def ask_fandom(question: str):
     :type question str
     :rtype: tuple[ask_fandom.intents.base, ask_fandom.intents.base.Answer]
     """
-    (intent_class, intent_args) = get_intent(question)
+    (intent_class, intent_args, words) = get_intent(question)
     intent = intent_class(question, **intent_args)
 
-    return intent, intent.get_answer()
+    return intent, words, intent.get_answer()
 
 
 @app.route('/ask')
@@ -34,7 +34,7 @@ def ask():
     app.logger.info('Question: %s', question)
 
     try:
-        intent, answer = ask_fandom(question)
+        intent, words, answer = ask_fandom(question)
     except QuestionNotUnderstoodError:
         return jsonify({'error': 'I could not understand your question'}), 422  # UNPROCESSABLE ENTITY
     except AskFandomError as ex:
@@ -44,7 +44,8 @@ def ask():
         'answer': str(answer),
         '_intent': intent.__class__.__name__,
         '_meta': answer.meta,
-        '_reference': answer.reference
+        '_words': words,  # how the question has been understood by NLP system
+        '_reference': answer.reference  # a link to the answer source
     })
 
 

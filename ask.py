@@ -15,7 +15,7 @@ def ask_fandom(question: str):
     :type question str
     :rtype: ask_fandom.intents.base.Answer
     """
-    (intent_class, intent_args) = get_intent(question)
+    (intent_class, intent_args, _) = get_intent(question)
     intent = intent_class(question, **intent_args)
 
     return intent.get_answer()

@@ -100,6 +100,12 @@ $ curl -s 'http://127.0.0.1:5000/ask?q=Who%20directed%20The%20Big%20Bang%20episo
     "property": "directed"
   },
   "_reference": null,
+  "_words": {
+    "NN": "episode",
+    "NP": "The Big Bang episode",
+    "VBD": "directed",
+    "WP": "Who"
+  },
   "answer": "\"The Big Bang episode\" episode has been directed by Toby Haynes."
 }
 ```

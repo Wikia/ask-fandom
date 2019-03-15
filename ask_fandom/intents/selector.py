@@ -68,6 +68,6 @@ def get_intent(question: str):
         logging.info('Selected %s with %s', intent, intent_args)
 
         # we have a match!
-        return [intent, intent_args]
+        return [intent, intent_args, words]
 
     raise QuestionNotUnderstoodError(question)
