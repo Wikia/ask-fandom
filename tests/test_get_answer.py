@@ -21,6 +21,9 @@ def test_ask_fandom():
         'Which club Cristiano Ronaldo plays for?': 'Cristiano Ronaldo plays for Juventus F.C. now.',
         'Where is Cristiano Ronaldo playing now?': 'Cristiano Ronaldo plays for Juventus F.C. now.',
         'Where does Cristiano Ronaldo play?': 'Cristiano Ronaldo plays for Juventus F.C. now.',
+
+        # normalization
+        'who directed The Big Bang episode': '"The Big Bang episode" episode has been directed by Toby Haynes.',
     }
 
     for question, expected_answer in test_cases.items():

@@ -20,39 +20,47 @@ def test_filter_parsed_question():
     (. ?) Tree 0
     """
     assert list(filter_parsed_question(NLPParser.parse_question("Who played Jake Simmonds?"))) == [
-        ('WP', 'Who'),
+        ('WP', 'who'),
         ('VBD', 'played'),
         ('NP', 'Jake Simmonds'),
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("When was Jake Simmonds born?"))) == [
-        ('WRB', 'When'),
+        ('WRB', 'when'),
         ('VBD', 'was'),
         ('NP', 'Jake Simmonds'),
         ('VBN', 'born'),
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Who directed The Big Bang episode?"))) == [
-        ('WP', 'Who'),
+        ('WP', 'who'),
+        ('VBD', 'directed'),
+        ('NP', 'The Big Bang episode'),
+        ('NN', 'episode'),
+    ]
+
+    # test normalization
+    assert list(filter_parsed_question(NLPParser.parse_question("who Directed The Big Bang episode"))) == [
+        ('WP', 'who'),
         ('VBD', 'directed'),
         ('NP', 'The Big Bang episode'),
         ('NN', 'episode'),
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Who played in The End of Time episode?"))) == [
-        ('WP', 'Who'),
+        ('WP', 'who'),
         ('VBD', 'played'),
         ('IN', 'in'),
         ('NP', 'The End of Time episode'),
         ('NP', 'The End'),
-        ('NN', 'End'),
+        ('NN', 'end'),
         ('IN', 'of'),
         ('NP', 'Time episode'),
         ('NN', 'episode'),
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Which faction does the Alterac belong to?"))) == [
-        ('WDT', 'Which'),
+        ('WDT', 'which'),
         ('NN', 'faction'),
         ('VBZ', 'does'),
         ('NP', 'the Alterac'),
@@ -63,14 +71,14 @@ def test_filter_parsed_question():
 
 def test_filter_parsed_question_football():
     assert list(filter_parsed_question(NLPParser.parse_question("When was Manchester United founded?"))) == [
-        ('WRB', 'When'),
+        ('WRB', 'when'),
         ('VBD', 'was'),
         ('NP', 'Manchester United'),
         ('VBN', 'founded'),
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Who is the coach of Manchester United?"))) == [
-        ('WP', 'Who'),
+        ('WP', 'who'),
         ('VBZ', 'is'),
         ('NP', 'the coach of Manchester United'),
         ('NP', 'the coach'),
@@ -80,7 +88,7 @@ def test_filter_parsed_question_football():
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Who plays as forward for Manchester United?"))) == [
-        ('WP', 'Who'),
+        ('WP', 'who'),
         ('VBZ', 'plays'),
         ('RB', 'as'),
         ('RB', 'forward'),
@@ -89,7 +97,7 @@ def test_filter_parsed_question_football():
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Who plays as midfielder for Manchester United?"))) == [
-        ('WP', 'Who'),
+        ('WP', 'who'),
         ('VBZ', 'plays'),
         ('RB', 'as'),
         ('JJ', 'midfielder'),
@@ -99,7 +107,7 @@ def test_filter_parsed_question_football():
 
     # different phrases of the same question
     assert list(filter_parsed_question(NLPParser.parse_question("Which club Cristiano Ronaldo plays for?"))) == [
-        ('WDT', 'Which'),
+        ('WDT', 'which'),
         ('NN', 'club'),
         ('NP', 'Cristiano Ronaldo'),
         ('VBZ', 'plays'),
@@ -107,7 +115,7 @@ def test_filter_parsed_question_football():
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Where is Cristiano Ronaldo playing now?"))) == [
-        ('WRB', 'Where'),
+        ('WRB', 'where'),
         ('VBZ', 'is'),
         ('NP', 'Cristiano Ronaldo'),
         ('VBG', 'playing'),
@@ -115,7 +123,7 @@ def test_filter_parsed_question_football():
     ]
 
     assert list(filter_parsed_question(NLPParser.parse_question("Where does Cristiano Ronaldo play?"))) == [
-        ('WRB', 'Where'),
+        ('WRB', 'where'),
         ('VBZ', 'does'),
         ('NP', 'Cristiano Ronaldo'),
         ('VB', 'play'),

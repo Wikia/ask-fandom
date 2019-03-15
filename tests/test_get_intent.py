@@ -14,7 +14,7 @@ def test_get_intent():
     # get_intent returns three items: intent, passed params and words segments of the question
     assert get_intent(question='Who played Jake Simmonds?') == \
            [PersonFactIntent, {'name': 'Jake Simmonds', 'property': 'played'},
-            {'NP': 'Jake Simmonds', 'VBD': 'played', 'WP': 'Who'}]
+            {'NP': 'Jake Simmonds', 'VBD': 'played', 'WP': 'who'}]
 
     assert get_intent(question='When was Jake Simmonds born?')[:2] == \
            [PersonFactIntent, {'name': 'Jake Simmonds', 'property': 'born'}]

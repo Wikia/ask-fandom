@@ -24,7 +24,7 @@ class FootballPlayerFactIntent(WikiTemplatesIntent):
 
         :rtype: bool
         """
-        if words.get('WRB') == 'Where':
+        if words.get('WRB') == 'where':
             # Where does Cristiano Ronaldo play?
             # {'WRB': 'Where', 'VBZ': 'does', 'NP': 'Cristiano Ronaldo', 'VB': 'play'}
             if words.get('VB') == 'play':
@@ -34,7 +34,7 @@ class FootballPlayerFactIntent(WikiTemplatesIntent):
             if words.get('VBG') == 'playing':
                 return True
 
-        if words.get('WDT') == 'Which':
+        if words.get('WDT') == 'which':
             # Which club Cristiano Ronaldo plays for?
             if words.get('VBZ') == 'plays' and words.get('IN') == 'for':
                 return True

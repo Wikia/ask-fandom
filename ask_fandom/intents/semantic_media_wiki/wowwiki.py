@@ -19,7 +19,7 @@ class WoWGroupsMemberIntent(SemanticFandomIntent):
         """
         # {'WDT': 'Which', 'NN': 'faction', 'VBZ': 'does',
         # 'NP': 'the Alterac', 'VB': 'belong', 'TO': 'to'}
-        if words.get('WDT') == 'Which' and words.get('VB') == 'belong' and words.get('TO', 'to'):
+        if words.get('WDT') == 'which' and words.get('VB') == 'belong' and words.get('TO', 'to'):
             return True
 
         return False
