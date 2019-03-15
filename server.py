@@ -6,7 +6,7 @@ import logging
 from ask_fandom.intents.base import AskFandomIntentBase
 from ask_fandom.errors import AskFandomError, QuestionNotUnderstoodError
 from ask_fandom.intents.selector import get_intent
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -21,6 +21,11 @@ def ask_fandom(question: str):
     intent = intent_class(question, **intent_args)
 
     return intent, words, intent.get_answer()
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/ask')
