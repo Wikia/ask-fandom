@@ -6,7 +6,7 @@ from ask_fandom.intents.base import AskFandomIntentBase
 
 class SemanticFandomIntent(AskFandomIntentBase):
     """
-    A base class for oracles that queries SemanticMediaWiki data
+    A base class for an intent that queries SemanticMediaWiki data
     """
     # pylint: disable=abstract-method
 
