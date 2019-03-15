@@ -8,7 +8,7 @@ from ask_fandom.intents import \
 from ask_fandom.intents.selector import get_intent
 
 
-def test_get_oracle():
+def test_get_intent():
     # https://tardis.fandom.com/wiki/Special:Browse/Jake_Simmonds
     assert get_intent(question='Who played Jake Simmonds?') == \
            [PersonFactIntent, {'name': 'Jake Simmonds', 'property': 'played'}]
@@ -39,6 +39,6 @@ def test_get_intent_football():
            [FootballPlayerFactIntent, {'name': 'Cristiano Ronaldo', 'property': 'plays'}]
 
 
-def test_get_oracle_not_understood():
+def test_get_intent_not_understood():
     with raises(QuestionNotUnderstoodError):
         get_intent(question='Is foo a bar?')

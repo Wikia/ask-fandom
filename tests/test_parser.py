@@ -1,5 +1,5 @@
 """
-Test cases for ask_fandom.oracle module
+Test cases for ask_fandom.intents module
 """
 from ask_fandom.parser import filter_parsed_question, NLPParser
 
