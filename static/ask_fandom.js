@@ -60,4 +60,12 @@ $(function() {
     }
 
     // $(window).bind( 'hashchange', onHashChange);
+
+    // examples
+    $('#examples a').on('click', function(ev) {
+        ev.preventDefault();
+
+        $('#question').val($(this).text());
+        $('#ask').hide().fadeIn();
+    });
 });

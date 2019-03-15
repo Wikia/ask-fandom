@@ -36,6 +36,15 @@
             <input type="submit" value="Ask" id="ask">
         </div>
     </div>
+     <div class="grid-container halves">
+        <div>
+           <ul id="examples">
+{% for example in examples %}
+               <li><a href="#">{{ example | e }}</a></li>
+{% endfor %}
+           </ul>
+        </div>
+     </div>
 </form>
 
 <div class="grid-container halves" id="answer-wrapper" style="display: none">

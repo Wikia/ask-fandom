@@ -37,7 +37,10 @@ def get_example_questions():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template(
+        'index.html',
+        examples=get_example_questions()
+    )
 
 
 @app.route('/ask')
