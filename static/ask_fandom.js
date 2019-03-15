@@ -24,6 +24,9 @@ $(function() {
         var question = $('#question').val();
         console.log('Asking the "' + question + '" question');
 
+        // make the question "linkable"
+        document.location.hash = question.replace(/ /g, '_');
+
         answer_wrapper.hide();
 
         // https://api.jquery.com/jquery.getjson/
@@ -43,4 +46,12 @@ $(function() {
                 answer_node.hide().fadeIn().text(resp.responseJSON.error);
             });
     });
+
+    // pre-fill the question box
+    if (document.location.hash) {
+        var hash_question = decodeURIComponent(document.location.hash).replace(/^#/, '').replace(/_/g, ' ');
+
+        $('#question').val(hash_question);
+        form.submit();
+    }
 });

@@ -1,4 +1,5 @@
 body {
+    background: #00000005;
     font-family: "IBM Plex Sans";
 }
 
@@ -12,4 +13,3 @@ body {
 #ask {
     display: block;
 }
-
