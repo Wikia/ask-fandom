@@ -92,7 +92,7 @@ class EpisodeFactIntent(SemanticFandomIntent):
 
         # remove trailing 'episode'
         if name.endswith(' episode'):
-            name = name[:-8]
+            name = self.args['name'] = name[:-8]
 
         values = self.get_smw_property_for_page('tardis.fandom.com', name, prop)
 
