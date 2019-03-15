@@ -23,6 +23,18 @@ def ask_fandom(question: str):
     return intent, words, intent.get_answer()
 
 
+def get_example_questions():
+    """
+    :rtype: list[str]
+    """
+    ret = []
+
+    for intent in AskFandomIntentBase.intents():
+        ret += intent.get_example_questions()
+
+    return sorted(ret)
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -51,6 +63,13 @@ def ask():
         '_meta': answer.meta,
         '_words': words,  # how the question has been understood by NLP system
         '_reference': answer.reference  # a link to the answer source
+    })
+
+
+@app.route('/examples')
+def examples():
+    return jsonify({
+        'questions': get_example_questions()
     })
 
 

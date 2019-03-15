@@ -110,6 +110,21 @@ $ curl -s 'http://127.0.0.1:5050/ask?q=Who%20directed%20The%20Big%20Bang%20episo
 }
 ```
 
+## `/examples`
+
+```
+$ curl -s 'http://127.0.0.1:5050/examples' | jq
+{
+  "questions": [
+    "Where does Lionel Messi play?",
+    "Which club Cristiano Ronaldo plays for?",
+    "Which faction does the Alterac belong to?",
+    "Who directed The Big Bang episode?",
+    "Who played Jake Simmonds?"
+  ]
+}
+```
+
 # Data sources
 
 ## SemanticMediaWiki API
