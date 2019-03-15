@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Ask Fandom</title>
+    <meta name="description" content="Your semantic data-based assistant">
+    <meta name="author" content="Wikia">
+
+    <!-- mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,300,600" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='normalize.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='barebones.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='ask_fandom.css') }}" rel="stylesheet" type="text/css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='ask_fandom.js') }}"></script>
+</head>
+
+<body>
+
+<!-- https://acahir.github.io/Barebones/ -->
+<div class="grid-container halves">
+    <div>
+        <h1>Ask Fandom</h1>
+        <h4>Your semantic data-based assistant</h4>
+    </div>
+</div>
+
+<form action="/ask">
+    <div class="grid-container halves">
+        <div>
+            <input name="q" placeholder="What do you want to know?" id="question">
+            <button id="say" title="Click to say your question"></button>
+        </div>
+        <div>
+            <input type="submit" value="Ask" id="ask">
+        </div>
+    </div>
+     <div class="grid-container halves">
+        <div>
+           <ul id="examples">
+{% for example in examples %}
+               <li><a href="#">{{ example | e }}</a></li>
+{% endfor %}
+           </ul>
+        </div>
+     </div>
+</form>
+
+<div class="grid-container halves" id="answer-wrapper" style="display: none">
+    <div>
+        <h4>Answer</h4>
+        <p id="answer"></p>
+    </div>
+</div>
+
+</body>
+</html>

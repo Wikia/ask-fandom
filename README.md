@@ -84,6 +84,47 @@ Who played Lionel Carson?
 Lionel Carson is played by Peter Bowles.
 ```
 
+# Web interface / HTTP API
+
+Run `make server` to start it. Flask server will listen on `0.0.0.0:5050`.
+
+## `/ask`
+
+```
+$ curl -s 'http://127.0.0.1:5050/ask?q=Who%20directed%20The%20Big%20Bang%20episode?' | jq
+{
+  "_intent": "EpisodeFactIntent",
+  "_meta": {
+    "answer": "Toby Haynes",
+    "name": "The Big Bang episode",
+    "property": "directed"
+  },
+  "_reference": null,
+  "_words": {
+    "NN": "episode",
+    "NP": "The Big Bang episode",
+    "VBD": "directed",
+    "WP": "Who"
+  },
+  "answer": "\"The Big Bang episode\" episode has been directed by Toby Haynes."
+}
+```
+
+## `/examples`
+
+```
+$ curl -s 'http://127.0.0.1:5050/examples' | jq
+{
+  "questions": [
+    "Where does Lionel Messi play?",
+    "Which club Cristiano Ronaldo plays for?",
+    "Which faction does the Alterac belong to?",
+    "Who directed The Big Bang episode?",
+    "Who played Jake Simmonds?"
+  ]
+}
+```
+
 # Data sources
 
 ## SemanticMediaWiki API

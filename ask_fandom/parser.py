@@ -74,7 +74,7 @@ def filter_parsed_question(tree):
         if item_len == 0 and \
                 item_type in ['WP', 'WRB', 'VBD', 'VBN', 'IN', 'NN',
                               'WDT', 'VB', 'TO', 'VBZ', 'RB', 'JJ', 'VBG']:
-            yield item_type, item_value
+            yield item_type, item_value.lower()  # normalize words ("Who" and "who" is the same)
 
         # (NP (NNP Jake) (NNP Simmonds))
         # (NP (DT The) (NNP Big) (NNP Bang) (NN episode)

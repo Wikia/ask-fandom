@@ -21,4 +21,4 @@ This file documents all available intents that can answer various types of quest
 > Provides data for a football player
 
 * _Which club Cristiano Ronaldo plays for?_
-* _Where does Lionel Messi play?_
+* _Where is Lionel Messi playing now?_

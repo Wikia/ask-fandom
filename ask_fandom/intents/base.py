@@ -95,20 +95,28 @@ class AskFandomIntentBase:
         return ret
 
     @classmethod
+    def get_example_questions(cls):
+        """
+        :rtype: list[str]
+        """
+        question_doc = str(cls.is_question_supported.__doc__.strip())
+
+        return [
+            line.lstrip()
+            for line in question_doc.split("\n")
+            if not line.lstrip().startswith(':') and not line.lstrip() == ''
+        ]
+
+    @classmethod
     def get_documentation(cls):
         """
         Returns Markdown formatted documentation for this intent
 
         :rtype: str
         """
-        question_doc = str(cls.is_question_supported.__doc__.strip())
-
-        # print(cls, question_doc)
-
         questions = "\n".join([
-            '* _{}_'.format(line.lstrip())
-            for line in question_doc.split("\n")
-            if not line.lstrip().startswith(':') and not line.lstrip() == ''
+            '* _{}_'.format(line)
+            for line in cls.get_example_questions()
         ])
 
         return """

@@ -9,8 +9,8 @@ def test_ask_fandom():
         # question: answer
         'Who played Agella?': 'Agella is played by Suzanne Danielle.',
         'Who played Alaya?': 'Alaya is played by Neve McIntosh.',
-        'Who directed The Big Bang episode?': '"The Big Bang episode" episode has been directed by Toby Haynes.',
-        'Who produced The Big Bang episode?': '"The Big Bang episode" episode has been produced by Peter Bennett.',
+        'Who directed The Big Bang episode?': '"The Big Bang" episode has been directed by Toby Haynes.',
+        'Who produced The Big Bang episode?': '"The Big Bang" episode has been produced by Peter Bennett.',
         'Which faction does the Alterac belong to?':  'Alterac is a member of "Contested territory" faction.',
         'Which government does Alterac belong to?': 'Alterac is a member of "Hereditary monarchy" government.',
 
@@ -21,6 +21,10 @@ def test_ask_fandom():
         'Which club Cristiano Ronaldo plays for?': 'Cristiano Ronaldo plays for Juventus F.C. now.',
         'Where is Cristiano Ronaldo playing now?': 'Cristiano Ronaldo plays for Juventus F.C. now.',
         'Where does Cristiano Ronaldo play?': 'Cristiano Ronaldo plays for Juventus F.C. now.',
+
+        # normalization
+        'who directed The Big Bang episode': '"The Big Bang" episode has been directed by Toby Haynes.',
+        'where is Lionel Messi playing now': 'Lionel Messi plays for FC Barcelona now.',
     }
 
     for question, expected_answer in test_cases.items():

@@ -19,12 +19,12 @@ class PersonFactIntent(SemanticFandomIntent):
         """
         # Who played Jake Simmonds?
         # {'WP': 'Who', 'VBD': 'played', 'NP': 'Jake Simmonds'}
-        if words.get('WP') == 'Who' and words.get('VBD') == 'played' and 'IN' not in words:
+        if words.get('WP') == 'who' and words.get('VBD') == 'played' and 'IN' not in words:
             return True
 
         # When was Jake Simmonds born?
         # {'NP': 'Jake Simmonds', 'WRB': 'When', 'VBN': 'born', 'VBD': 'was'}
-        if words.get('WRB') == 'When' and words.get('VBD') == 'was':
+        if words.get('WRB') == 'when' and words.get('VBD') == 'was':
             return True
 
         return False
@@ -65,7 +65,7 @@ class EpisodeFactIntent(SemanticFandomIntent):
         :rtype: bool
         """
         # {'WP': 'Who', 'VBD': 'directed', 'NP': 'The Big Bang episode', 'NN': 'episode'}
-        if words.get('WP') == 'Who' and words.get('NN') == 'episode':
+        if words.get('WP') == 'who' and words.get('NN') == 'episode':
             return True
 
         return False
@@ -92,7 +92,7 @@ class EpisodeFactIntent(SemanticFandomIntent):
 
         # remove trailing 'episode'
         if name.endswith(' episode'):
-            name = name[:-8]
+            name = self.args['name'] = name[:-8]
 
         values = self.get_smw_property_for_page('tardis.fandom.com', name, prop)
 
