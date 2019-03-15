@@ -42,6 +42,6 @@ def test_get_intent_football():
            [FootballPlayerFactIntent, {'name': 'Cristiano Ronaldo', 'property': 'plays'}]
 
 
-def test_get_oracle_not_understood():
+def test_get_intent_not_understood():
     with raises(QuestionNotUnderstoodError):
         get_intent(question='Is foo a bar?')
