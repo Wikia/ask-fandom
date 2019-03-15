@@ -128,3 +128,11 @@ def test_filter_parsed_question_football():
         ('NP', 'Cristiano Ronaldo'),
         ('VB', 'play'),
     ]
+
+    assert list(filter_parsed_question(NLPParser.parse_question("Where is Lionel Messi playing now?"))) == [
+        ('WRB', 'where'),
+        ('VBZ', 'is'),
+        ('NP', 'Lionel Messi'),
+        ('VBG', 'playing'),
+        ('RB', 'now'),
+    ]

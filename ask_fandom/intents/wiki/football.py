@@ -20,7 +20,7 @@ class FootballPlayerFactIntent(WikiTemplatesIntent):
     def is_question_supported(words: dict):
         """
         Which club Cristiano Ronaldo plays for?
-        Where does Lionel Messi play?
+        Where is Lionel Messi playing now?
 
         :rtype: bool
         """
