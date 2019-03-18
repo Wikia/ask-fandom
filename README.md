@@ -153,6 +153,7 @@ $ curl -s 'http://127.0.0.1:5050/examples' | jq
 * [Indexing and Retrieving Natural Language Using Ternary Expressions](https://cs.uwaterloo.ca/~jimmylin/publications/Lin_MEng_thesis_2001.pdf)
 * [Annotating the World Wide Web using Natural Language](https://groups.csail.mit.edu/infolab/publications/Katz-RIAO97.pdf)
 * [Extracting Answers from the Web Using Knowledge Annotation and Knowledge Mining Techniques](https://groups.csail.mit.edu/infolab/publications/Lin-etal-TREC2002.pdf)
+* [DBpedia – A Large-scale, Multilingual Knowledge Base Extracted from Wikipedia](http://www.semantic-web-journal.net/system/files/swj558.pdf)
 
 # Install
 
