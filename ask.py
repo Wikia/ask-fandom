@@ -8,6 +8,7 @@ from os import getenv
 from sys import argv
 
 from ask_fandom.errors import AskFandomError
+from ask_fandom.intents import AnswersWikiIntent  # a temporary fallback for ask_fandom
 from ask_fandom.intents.selector import get_intent
 
 
@@ -23,10 +24,14 @@ def ask_fandom(question: str):
         return intent.get_answer()
 
     except AskFandomError as ex:
-        # fall back to Q&A Wikia site for an answer
-        # TODO: fully index questions and answers and extract knowledge from them
+        try:
+            # fall back to Q&A wiki site for an answer
+            # TODO: fully index questions and answers and extract knowledge from them
+            return AnswersWikiIntent(question).get_answer()
 
-        raise ex
+        except AskFandomError:
+            # return the original exception
+            raise ex
 
 
 if __name__ == "__main__":
