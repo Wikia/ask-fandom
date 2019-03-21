@@ -63,6 +63,7 @@ class FootballPlayerFactIntent(WikiTemplatesIntent):
 
             # 'currentclub': ' FlagiconITA [[Juventus F.C.|Juventus]]\n'
             if value:
+                self._set_wikia_reference('football.fandom.com', article_name=self.args['name'])
                 return extract_link(value)
 
         return None

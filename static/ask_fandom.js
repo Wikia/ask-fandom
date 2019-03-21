@@ -35,7 +35,14 @@ $(function() {
                 console.log('Got a response', resp);
 
                 answer_wrapper.show();
-                answer_node.hide().fadeIn().text(resp.answer);
+
+                // build answer's HTML
+                var answer_html = resp.answer;
+                if (resp._reference) {
+                    answer_html += '<br><cite><a target="_blank" href="' + encodeURI(resp._reference) + '">Source</cite>';
+                }
+
+                answer_node.hide().fadeIn().html(answer_html);
 
                 say(resp.answer);
             }).

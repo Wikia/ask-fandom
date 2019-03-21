@@ -27,3 +27,9 @@ form {
     top: 12px;
     opacity: .5;
 }
+
+#answer cite {
+    display: block;
+    font-size: small;
+    padding: 1em;
+}
