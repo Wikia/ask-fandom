@@ -51,7 +51,7 @@ class AnswersWikiIntent(AskFandomIntentBase):
         answer = wiki_text.split('\n')[0]
 
         if answer and not answer.startswith('[[Category:'):
-            # TODO: set reference
+            self._set_wikia_reference(answers_wiki, page_title)
             return answer.strip()
 
         return None
