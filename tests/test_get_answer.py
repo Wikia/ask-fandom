@@ -27,10 +27,14 @@ def test_ask_fandom():
         # normalization
         'who directed The Big Bang episode': '"The Big Bang" episode has been directed by Toby Haynes.',
         'where is Lionel Messi playing now': 'Lionel Messi plays for FC Barcelona now.',
+
+        # fallback to Q&A wiki
+        'Do I need a passport to travel to Italy?':
+            'Yes, you need passport to travel in Italy unless you are the citizen of the Italy.',
     }
 
     for question, expected_answer in test_cases.items():
-        answer = ask_fandom(question)
+        (_, _, answer) = ask_fandom(question)
         print(answer)
         assert str(answer) == expected_answer, question
 

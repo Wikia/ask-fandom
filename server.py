@@ -3,24 +3,13 @@ This script runs a web interface of ask-fandom
 """
 import logging
 
+from ask import ask_fandom
 from ask_fandom.intents.base import AskFandomIntentBase
 from ask_fandom.errors import AskFandomError, QuestionNotUnderstoodError
-from ask_fandom.intents.selector import get_intent
 from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
-
-
-def ask_fandom(question: str):
-    """
-    :type question str
-    :rtype: tuple[ask_fandom.intents.base, ask_fandom.intents.base.Answer]
-    """
-    (intent_class, intent_args, words) = get_intent(question)
-    intent = intent_class(question, **intent_args)
-
-    return intent, words, intent.get_answer()
 
 
 def get_example_questions():
