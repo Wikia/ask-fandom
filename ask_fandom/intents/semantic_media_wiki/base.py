@@ -38,6 +38,7 @@ class SemanticFandomIntent(AskFandomIntentBase):
 
                 self.logger.info("Got the value for %s: %s", prop, values)
 
+                self._set_wikia_reference(wiki_domain, article_name=page)
                 return values
 
         return None
