@@ -40,7 +40,8 @@ def test_ask_fandom():
 
 
 def test_football_details():
-    answer = ask_fandom('Which club Romelu Lukaku plays for?')
+    (intent, _, answer) = ask_fandom('Which club Romelu Lukaku plays for?')
+    assert intent.__class__ == FootballPlayerFactIntent
     assert isinstance(answer, Answer)
 
     assert str(answer) == 'Romelu Lukaku plays for Manchester United F.C. now.'
