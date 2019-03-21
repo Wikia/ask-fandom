@@ -22,3 +22,9 @@ This file documents all available intents that can answer various types of quest
 
 * _Which club Cristiano Ronaldo plays for?_
 * _Where is Lionel Messi playing now?_
+
+## `AnswersWikiIntent`
+> Provides answers using Answers wiki
+
+* _Do I need a passport to travel to Italy?_
+* _What are faxes used for?_
