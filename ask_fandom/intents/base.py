@@ -25,6 +25,8 @@ class AskFandomIntentBase:
         self.question = question
         self.args = kwargs
 
+        self.reference = None  # source of the answer, an URL
+
         self.logger.info("You've asked: '%s' (%s)", self.question, self.args)
 
     def __repr__(self):
@@ -49,7 +51,8 @@ class AskFandomIntentBase:
             question=self.question,
             answer=self.ANSWER_PHRASE.format(**meta),
             intent=self.__class__,
-            meta=meta
+            meta=meta,
+            reference=self.reference
         )
 
     def _fetch_answer(self):
@@ -57,6 +60,20 @@ class AskFandomIntentBase:
         :rtype: str
         """
         raise NotImplementedError()
+
+    def _set_reference(self, reference: str):
+        """
+        :type reference str
+        """
+        self.reference = reference
+
+    def _set_wikia_reference(self, wikia_domain: str, article_name: str):
+        """
+        :type wikia_domain str
+        :type article_name str
+        """
+        self._set_reference('https://{}/wiki/{}'.format(
+            wikia_domain, article_name.replace(' ', '_')))
 
     @staticmethod
     def is_question_supported(words: dict):

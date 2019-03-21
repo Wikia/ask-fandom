@@ -2,6 +2,8 @@ from pytest import raises
 
 from ask import ask_fandom
 from ask_fandom.errors import AnswerNotKnownError
+from ask_fandom.intents import FootballPlayerFactIntent
+from ask_fandom.intents.base import Answer
 
 
 def test_ask_fandom():
@@ -31,6 +33,23 @@ def test_ask_fandom():
         answer = ask_fandom(question)
         print(answer)
         assert str(answer) == expected_answer, question
+
+
+def test_football_details():
+    answer = ask_fandom('Which club Romelu Lukaku plays for?')
+    assert isinstance(answer, Answer)
+
+    assert str(answer) == 'Romelu Lukaku plays for Manchester United F.C. now.'
+
+    assert answer.intent == FootballPlayerFactIntent
+    assert answer.question == 'Which club Romelu Lukaku plays for?'
+    assert answer.answer == 'Romelu Lukaku plays for Manchester United F.C. now.'
+    assert answer.meta == {
+        'answer': 'Manchester United F.C.',
+        'name': 'Romelu Lukaku',
+        'property': 'plays'
+    }
+    assert answer.reference == 'https://football.fandom.com/wiki/Romelu_Lukaku'
 
 
 def test_ask_fandom_dont_know():
