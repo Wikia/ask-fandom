@@ -7,6 +7,7 @@ import logging
 from os import getenv
 from sys import argv
 
+from ask_fandom.errors import AskFandomError
 from ask_fandom.intents.selector import get_intent
 
 
@@ -15,10 +16,17 @@ def ask_fandom(question: str):
     :type question str
     :rtype: ask_fandom.intents.base.Answer
     """
-    (intent_class, intent_args, _) = get_intent(question)
-    intent = intent_class(question, **intent_args)
+    try:
+        (intent_class, intent_args, _) = get_intent(question)
+        intent = intent_class(question, **intent_args)
 
-    return intent.get_answer()
+        return intent.get_answer()
+
+    except AskFandomError as ex:
+        # fall back to Q&A Wikia site for an answer
+        # TODO: fully index questions and answers and extract knowledge from them
+
+        raise ex
 
 
 if __name__ == "__main__":
