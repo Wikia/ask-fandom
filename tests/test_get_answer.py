@@ -32,7 +32,7 @@ def test_ask_fandom():
     }
 
     for question, expected_answer in test_cases.items():
-        answer = ask_fandom(question)
+        (_, _, answer) = ask_fandom(question)
         print(answer)
         assert str(answer) == expected_answer, question
 

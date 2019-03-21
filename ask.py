@@ -15,19 +15,19 @@ from ask_fandom.intents.selector import get_intent
 def ask_fandom(question: str):
     """
     :type question str
-    :rtype: ask_fandom.intents.base.Answer
+    :rtype: tuple[ask_fandom.intents.base, ask_fandom.intents.base.Answer]
     """
     try:
-        (intent_class, intent_args, _) = get_intent(question)
+        (intent_class, intent_args, words) = get_intent(question)
         intent = intent_class(question, **intent_args)
 
-        return intent.get_answer()
+        return intent, words, intent.get_answer()
 
     except AskFandomError as ex:
         try:
             # fall back to Q&A wiki site for an answer
             # TODO: fully index questions and answers and extract knowledge from them
-            return AnswersWikiIntent(question).get_answer()
+            return AnswersWikiIntent, None, AnswersWikiIntent(question).get_answer()
 
         except AskFandomError:
             # return the original exception
