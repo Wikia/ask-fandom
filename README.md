@@ -161,4 +161,5 @@ $ curl -s 'http://127.0.0.1:5050/examples' | jq
 virtualenv env -ppython3
 . env/bin/activate
 pip install -r requirements.txt
+make server
 ```
