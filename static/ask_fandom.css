@@ -25,7 +25,11 @@ form {
     position: absolute;
     left: 0;
     top: 12px;
-    opacity: .5;
+    border-radius: 30px;
+}
+
+#say.recording {
+    background-color: #ff0000aa;
 }
 
 #answer cite {

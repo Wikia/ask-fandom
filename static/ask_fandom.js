@@ -88,7 +88,6 @@ $(function() {
         ev.preventDefault();
 
         var button =$(this);
-        button.css('opacity', '1');
 
         var recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
         recognition.lang = 'en-US';
@@ -97,12 +96,13 @@ $(function() {
         recognition.start();
 
         console.log('Please tell us your question');
+        button.addClass('recording');
 
         recognition.onresult = function(event) {
             var text = event.results[0][0].transcript;
             console.log('You said: ', text);
-            button.css('opacity', '.5');
 
+            button.removeClass('recording');
             ask(text);
         };
     });
