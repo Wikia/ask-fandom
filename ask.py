@@ -46,9 +46,9 @@ if __name__ == "__main__":
 
     user_question = default_question if len(argv) < 2 else argv[1]
 
-    answer = ask_fandom(user_question)
-    logging.info('%s -> %s (%s: %s)',
-                 answer.question, answer.answer, answer.intent.__name__, answer.meta)
+    (_, words, answer) = ask_fandom(user_question)
+    logging.info('%s (%s) -> %s (%s: %s)',
+                 answer.question, words, answer.answer, answer.intent.__name__, answer.meta)
 
     print('---')
     print(user_question)
