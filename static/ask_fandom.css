@@ -1,5 +1,8 @@
 body {
-    background: #00000005;
+    background-color: #00000005;
+    background-image: url('morbo_demands.jpg');
+    background-size: cover;
+    color: #fff;
     font-family: "IBM Plex Sans";
 }
 
